@@ -1,0 +1,113 @@
+---
+title: Envelopes & LFOs
+---
+
+import { CommentSection } from '@site/src/components/CommentSection';
+
+# Envelopes & LFOs
+
+## Envelopes
+
+Envelopes are most often used to shape the amplitude of a sound over time. However, they can also be used to modulate other parameters in the synth. For information on assigning envelopes to modulation destinations, see the [Modulation](/docs/Vital/UserGuide/Modulation) section.
+
+<img
+  src="/img/vital-images/envelopes.svg"
+  alt="Envelopes"
+  className="example-image"
+  loading="lazy"
+  style={{ display: 'block', maxWidth: '700px', margin: '40px auto' }}
+/>
+
+The envelopes in Vital consist of 6 stages:
+* **Delay** (*0 to 4 sec*): The time before the envelope starts.
+* **Attack** (*0 to 32 sec*): The time taken for the initial run-up of the level from 0 to peak.
+* **Hold** (*0 to 4 sec*): The time during which the level is held at the peak.
+* **Decay** (*0 to 32 sec*): The time taken for the level to decay to the sustain level.
+* **Sustain** (*0 to 1*): The value which is maintained after the previous stages, until the key is released.
+* **Release** (*0 to 32 sec*): The time taken for the level to decay from the sustain level to zero.
+
+Additionally, there are controls for the **slopes** of the Attack and Release stages. Use the magnifying glass to **zoom** in and out.
+
+By default, you will see 3 envelopes. After you assign them to a modulation destination, more will appear for a **total of 6 envelopes**.
+
+## Low-Frequency Oscillators (LFOs)
+
+LFOs are used to modulate parameters cyclically, often at a rate slower than audio frequencies.
+
+As with the envelopes, once you have assigned all of the visible LFOs to a modulation destination, more LFOs will appear up to a maximum of 8.
+
+Vital comes with a wide variety of preset LFOs (accessible via the preset menu at the top of the editor), as well as extensive editing capabilities for creating custom LFO shapes, enabling you to achieve intricate modulation effects.
+
+<img
+  src="/img/vital-images/LFOs.svg"
+  alt="LFOs"
+  className="example-image"
+  loading="lazy"
+  style={{ maxWidth: '850px', margin: '40px auto' }}
+/>
+
+In the LFO editor, the X grid controls horizontal (phase/time) resolution while the Y grid controls vertical (amplitude) quantization. This helps in precisely editing the shape and steps of the LFO curve. You can increase or decrease the number of lines on the grid using the X and Y grid controls at the top of the editor. Click on the squiggly line next to the grid controls to toggle between straight and curved lines.
+
+There are two different types of points in the LFO editor:
+* **Open point**: These can be repositioned vertically and horizontally.
+* **Closed point**: These occur between each open point that is not the same X value as the previous one (i.e., not vertically aligned) and are used to change the slope of a line. They can be dragged up and down.
+
+When you add a new point, it will be an open point and there will be slope controls for the segments on either side of it, where applicable.
+
+**Editing points** (not in paintbrush mode):
+* To **reposition**, click and drag the points. If you hold Shift while dragging on the slope points, all others will move as well.
+* **Adding points**: Double-click on the curve.
+* **Deleting points**: Double-click on an existing open point, or right-click and select **Remove Point** from the context menu.
+
+You can use the **paintbrush** tool to draw patterns. Clicking on the pattern next to the brush brings up a menu with the following options:
+- **Step**: Creates a stepped waveform.
+- **Half**: Applies a half-wave pattern.
+- **Down**: Draws a descending ramp.
+- **Up**: Draws an ascending ramp.
+- **Tri**: Generates a triangle shape.
+
+**Phase Slider** (*0 to 1*): This control under the waveform is used to set positions which are relevant to the LFO mode you are using (described next).
+
+**Modes**:
+- **Trigger**: Starts the LFO at the slider position and resets it each time a note is triggered. The LFO will repeatedly cycle over the entire waveform while the note is held down.
+- **Sync**: Starts at the slider position and locks the LFO cycle to the host tempo. It does not reset on note triggers–subsequent notes will pick up where the host tempo is in the LFO cycle.
+- **Envelope**: Starts at the slider position and runs to the end of the LFO waveform, like a one-shot envelope.
+- **Sustain Envelope**: Starts at the beginning of the LFO and runs to the location set by the slider, then holds that value until the note is released.
+- **Loop Point**: Starts from the beginning of the LFO, then loops a segment of the waveform between the slider position and the end.
+- **Loop Hold**: Starts at the beginning of the LFO and treats the slider position as the loop end point.
+
+The LFOs support **syncing options ("Frequency")** much like other components in the synth:
+* **Seconds** (*0.001 to 128.0 Hz*): LFO repeats every X seconds.
+* **Tempo** (*Freeze, 32/1 to 1/64*): Sets the speed in musical subdivisions of the host's BPM. Choosing "Freeze" stops the LFO.
+* **Tempo Dotted** (*Freeze, 32/1 to 1/64*): Sets the speed in dotted musical subdivisions of the host's BPM.
+* **Tempo Triplets** (*Freeze, 32/1 to 1/64*): Sets the speed in triplet musical subdivisions of the host's BPM.
+* **Keytrack**: Modulates the frequency based on the pitch of incoming notes. There are two parameters:
+    * **Transpose** (*-60 to 36 semitones*): Shifts the pitch of the key tracking by a certain number of semitones. It changes the reference pitch for the key tracking, allowing you to adjust the base pitch up or down.
+    * **Tune** (*-100 to 100 cents*): Fine-tunes the pitch in cents (1/100th of a semitone).
+
+The remaining controls are as follows:
+- **Smooth** (*0 to 16 sec*): Applies exponential smoothing to the LFO output, making transitions less abrupt. The parameter determines how quickly the output settles.
+  - **Fade In** (*0 to 8 sec*): To see this option, right-click on the **Smooth** label. It fades in the modulation effect so that it starts unmodulated and gradually increases until it reaches the full modulation amount.
+- **Delay** (*0 to 4 sec*):
+  Sets a time delay before the LFO starts modulating.
+- **Stereo** (*-0.5 to 0.5*): Allows a stereo phase offset so the left and right channels can have different LFO phases, adding width and movement to the effect.
+
+* Right-click **Context Menus** (not in paintbrush mode):
+  * **Common Options** (right-clicking on any point, as well as the background):
+    * **Copy**: Copies the LFO to the clipboard. It can then be pasted into another LFO, one of the Oscillators' wave displays, or the [modulation remap in the Matrix tab](/docs/Vital/UserGuide/Modulation#modulation-matrix).
+    * **Save to LFOs**: Opens a dialog to save the LFO as a preset (`.vitallfo` format).
+    * **Flip Horizontal**: Flips the waveform horizontally.
+    * **Flip Vertical**: Flips the waveform vertically.
+    * **Import LFO**: Imports an LFO from a `.vitallfo` file.
+    * **Export LFO**: Exports the LFO as a `.vitallfo` file.
+  * **Slope points**:
+    * **Set Start Point**: Sets the phase slider to the selected point.
+    * **Reset Power**: Resets the power of the slope to a linear line.
+  * **Open points**:
+    * **Set Start Point**: Sets the phase slider to the selected point.
+    * **Remove Point**: Deletes the selected point.
+    * **Enter Point Phase**: Allows you to enter a specific phase (horizontal) value for the selected point.
+    * **Enter Point Value**: Allows you to enter a specific amplitude (vertical) value for the selected point.
+
+
+<CommentSection />

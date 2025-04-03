@@ -1,0 +1,128 @@
+---
+title: Modulation
+---
+
+import {CommentSection} from '@site/src/components/CommentSection';
+
+# Modulation
+
+Vital supports extensive modulation capabilities. You can modulate almost any parameter in the synth including using audio-rate modulation. The modulation sources include oscillators, LFOs, envelopes, random modulators, note modulators, and more. You can also drag-and-drop modulation sources onto modulation targets, assign modulators to MIDI controls, and edit the routing in the dedicated [Matrix tab](#modulation-matrix).
+
+## Drag-and-drop modulation
+
+You can drag-and-drop modulation sources onto modulation targets in Vital. The parameters that can be modulated will be highlighted:
+
+<img
+  src="/img/vital-images/drag-and-drop-modulation.svg"
+  alt="Drag-and-drop modulation"
+  loading="lazy"
+  className="example-image"
+/>
+
+When dragging, you can audition the modulation by hovering over the target while playing. The mapping will not occur until you release the mouse.
+
+Once a modulation mapping is made, you can click on the source to see the target. If you hover over the target, you will see the source and value. All modulations are shown in the [modulation matrix](#modulation-matrix). You can adjust the modulation amount as you would a knob.
+
+<img
+  src="/img/vital-images/mod-source-target-highlighting.svg"
+  alt="Mod source and target highlighting"
+  className="example-image"
+  loading="lazy"
+  style={{ display: 'block', maxWidth: '750px', margin: '40px auto' }}
+/>
+
+## Modulation matrix
+
+The Matrix tab shows all of the modulation mappings in your preset. It provides options for changing the modulation source and destination via popup menus, toggling the modulation on and off, adjusting the modulation polarity and amount, editing the response curve (linear or logarithmic), and editing the secondary modulation (Mod Remap), which is identical to the [LFO editor](/docs/Vital/UserGuide/Envelopes-and-LFOs#low-frequency-oscillators-lfos). The context menus allow you to assign MIDI controllers, enter values, and restore default values.
+
+<img
+  src="/img/vital-images/mod-matrix-annotated.svg"
+  alt="Matrix tab with source and destination menus"
+  className="example-image"
+  loading="lazy"
+  style={{ margin: '20px 0' }}
+/>
+
+
+## Macros and wheels
+
+Macros are a way to control various parameters with MIDI-assignable controls. Each macro has an **amount knob** and an **assignable display area** below it for mappings. You can assign a macro to any eligible parameter by dragging the display area to the parameter.
+
+<img
+  src="/img/vital-images/macros.svg"
+  alt="Macros"
+  className="example-image"
+  loading="lazy"
+  style={{ display: 'block', maxWidth: '550px', margin: '40px auto' }}
+/>
+
+### Context menu for macro knobs
+
+* **Set to Default Value**: Resets the parameter to its default value.
+* **Learn MIDI Assignment**: Move a MIDI controller to assign it to the parameter.
+* **Enter Value**: Manually enter a value.
+
+### Context menu for targets
+
+* **Disconnect from [target]**: Removes the modulation mapping.
+* **Disconnect All**: Removes all modulation mappings.
+
+### Context menu for parameter
+
+* **Remove**: Removes the parameter from the macro.
+* **Bypass**: Bypasses the parameter without removing it from the macro.
+* **Make Bipolar**: Allows the macro to modulate the parameter in both directions.
+* **Make Stereo**: Allows the macro to modulate the parameter in both channels, L/R.
+* **Learn MIDI Assignment**: Move a MIDI controller to assign it to the parameter.
+* **Enter Value**: Manually enter a value.
+
+## Note modulators
+
+The note modulators can be found towards the bottom right of the UI. They modulate the sound based on the key played.
+
+<img
+  src="/img/vital-images/note-modulators.svg"
+  alt="Note modulators"
+  className="example-image"
+  loading="lazy"
+  style={{ display: 'block', maxWidth: '300px', margin: '40px auto' }}
+/>
+
+* **Note**: Modulates the parameter based on the note played. The higher the note, the higher the modulation.
+* **Velocity**: Modulates the parameter based on the velocity of the note played.
+* **Lift**: Modulates the parameter once the key is released.
+* **Oct Note**: Similar to **Note**, but the amount of modulation resets every octave.
+* **Pressure**: Modulates the parameter based on the pressure applied to the key, also known as *aftertouch*.
+* **Slide**: This is an MPE (MIDI Polyphonic Expression) control that modulates a parameter based on sliding up and down a key.
+* **Stereo**: Modulates the stereo spread based on the note played.
+* **Random**: Modulates the parameter randomly each time a note is played.
+
+## Random modulators
+
+This set of modulators can be found towards the bottom right of the UI. They use a random LFO to generate signals:
+
+<img
+  src="/img/vital-images/random-modulators.svg"
+  alt="Random modulators"
+  className="example-image"
+  loading="lazy"
+  style={{ display: 'block', maxWidth: '700px', margin: '40px auto' }}
+/>
+
+* **Sync**: When enabled, it locks to the host's timeline.
+* **Stereo**: Toggles between mono and stereo modes. In stereo mode, each channel gets a separately generated random signal.
+* **Style**: Selects the random waveform:
+  * **Perlin**: [Smooth "noise"](https://en.wikipedia.org/wiki/Perlin_noise) that interpolates gradually between random values.
+  * **Sample & Hold**: Stepped random values that jump to new values on each cycle.
+  * **Sine Interpolate**: Uses sinusoidal interpolation between random points for a smoother, wave-like feel.
+  * **Lorenz Attractor**: Generates chaotic waveforms via the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system), creating a swirling, fractal-like motion.
+* **Frequency**: There are two settings here that change depending on what type of sync is selected:
+  * **Seconds** (*0.001 to 128.0 Hz*): LFO repeats every X seconds.
+  * **Tempo** (*Freeze, 32/1 to 1/64*): Sets the speed in musical subdivisions of the host's BPM. Choosing "Freeze" stops the LFO.
+  * **Tempo Dotted** (*Freeze, 32/1 to 1/64*): Sets the speed in dotted musical subdivisions of the host's BPM.
+  * **Tempo Triplets** (*Freeze, 32/1 to 1/64*): Sets the speed in triplet musical subdivisions of the host's BPM.
+  * **Keytrack**: Modulates the frequency based on the pitch played.
+    * **Transpose** (*-60 to 36 semitones*): Shifts the pitch of the keytracking by a certain number of semitones. It changes the reference pitch for the keytracking, allowing you to adjust the base pitch up or down.
+    * **Tune** (*-100 to 100 cents*): Fine-tunes the pitch in cents (1/100th of a semitone).
+
+<CommentSection />

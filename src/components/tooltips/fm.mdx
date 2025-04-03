@@ -1,0 +1,20 @@
+import React from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from '@site/src/components/tooltip.module.scss';
+
+export default function Fm() {
+  const referencePageUrl = useBaseUrl('docs/Synthesis-Reference/fm-ref');
+  return (
+    <>
+      <h3>Frequency Modulation</h3>
+      <p>
+        <strong>Frequency modulation</strong> is a type of modulation that uses the frequency
+        of a carrier signal to modulate the amplitude of a modulating signal. The frequency
+        of the carrier signal is varied in proportion to the amplitude of the modulating
+        signal. Frequency modulation is used in audio synthesis to create complex and evolving
+        timbres.
+      </p>
+      <p className={styles.popupRefLink}><a href={referencePageUrl}>Go to reference page...</a></p>
+    </>
+  );
+}

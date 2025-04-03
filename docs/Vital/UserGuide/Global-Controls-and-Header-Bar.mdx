@@ -1,0 +1,124 @@
+---
+title: Global Controls & Header Bar
+---
+
+import { CommentSection } from '@site/src/components/CommentSection';
+
+# Global Controls & Header Bar
+
+The following commands apply to knobs and sliders in Vital. These shortcuts are based on macOS and may differ on Windows or Linux.
+
+- **Click**: Displays the parameter value and label (if available).
+- **Cmd + Click-and-Drag**: Provides fine-grained control for adjusting parameters.
+- **Opt + Click** or **Enter Value** from the context menu: Manually enter a value for the parameter.
+- **Double-click** or **Set Default Value** from context menu: Resets a parameter to its default value.
+
+## Note settings
+
+The lower-right corner of the interface displays various note settings:
+
+<img
+  src="/img/vital-images/keyboard-controls.svg"
+  alt="Keyboard controls"
+  className="example-image"
+  loading="lazy"
+  style={{ width: '100%', maxWidth: '700px', height: 'auto' }}
+/>
+
+- **Voices** (*1 to 32*): Determines polyphony, or how many notes can be played simultaneously. Higher values increase CPU usage.
+- **Bend** (*0 to 48 semitones*): Sets the pitch bend range.
+- **Vel Trk** (*-100% to 100%*): Adjusts velocity tracking. At 0%, velocity has no effect. At 100%, velocity fully affects the amplitude envelope. At -100%, velocity inversely affects the envelope (higher velocity = lower envelope value).
+- **Spread** (*0 to 100%*): Controls stereo width. At 0%, the output is mono. At 100%, the sound is fully stereo.
+- **Glide** (*0 to 16 seconds*): Adjusts portamento, or the time it takes for a pitch to glide from one note to another. At 0 seconds, there is an instant pitch change. Higher values result in slower pitch transitions.
+- **Slope** (*-8 to 8*): Modifies the **Glide** (portamento) response curve.
+  - **-8**: Exponential curve (starts slow, speeds up at the end).
+  - **0**: Linear transition (constant glide speed).
+  - **8**: Logarithmic curve (starts fast, slows down at the end).
+- **Always Glide**: When enabled, the glide is always on, even when notes are played staccato (detached).
+- **Octave Scale**: When enabled, the glide time increases with larger pitch differences.
+- **Legato**: When enabled and **Voices** is set to 1, playing successive notes does not retrigger the amplitude envelope, allowing for smooth legato transitions while playing monophonically.
+
+## Header bar
+
+The header bar contains the following elements:
+
+<img
+  src="/img/vital-images/header-bar.svg"
+  alt="Header bar"
+  loading="lazy"
+  className="example-image"
+/>
+
+### System menu
+
+<img
+  src="/img/vital-images/system-menu.svg"
+  alt="System menu"
+  className="example-image"
+  loading="lazy"
+  style={{ maxWidth: '500px', width: '100%', height: 'auto' }}
+/>
+
+Use the system menu to choose a predefined zoom level, enable **Check for updates**, and access your system's audio and MIDI settings.
+
+In standalone mode, you can also adjust the zoom by dragging the corners of the main application window.
+
+### Main tabs
+
+There are four main tabs accessible in the header bar:
+
+<img
+  src="/img/vital-images/four-main-tabs.svg"
+  alt="Four main tabs"
+  className="example-image"
+  loading="lazy"
+  style={{ maxWidth: '500px', width: '100%', height: 'auto' }}
+/>
+
+* The **Voice** tab gives you access to the [oscillators](/docs/Vital/UserGuide/Oscillators-and-Sampler), [sampler](/docs/Vital/UserGuide/Oscillators-and-Sampler#sampler), and [filters](/docs/Vital/UserGuide/Filters).
+* The [Effects](/docs/Vital/UserGuide/Effects) tab provides access to the effects chain.
+* The [Matrix](/docs/Vital/UserGuide/Modulation#modulation-matrix) tab is where you can see all the modulation mappings for your patch.
+* The [Advanced](/docs/Vital/UserGuide/Advanced) tab contains various global settings for the synth as well as additional settings for the oscillators.
+
+### Presets
+
+Vital has an extensive preset system which allows you to search by text, category, folder, or favorites as well as save, import, export, and categorize them.
+
+Click on the preset in the header bar to open the preset browser. You can sort the presets by clicking on their column headers. The context menu for the preset browser allows you to open the file location, rename, or delete the preset.
+
+<figure style={{ margin: '40px 0' }}>
+  <img
+    className="example-image"
+    src="/img/vital-images/preset-browser.svg"
+    loading="lazy"
+    alt="Preset browser"
+  />
+  <figcaption>Preset browser and menu</figcaption>
+</figure>
+
+The **Preset menu** has the following options:
+* **Browse Presets**: Opens the preset browser.
+* **Save Preset**: Opens the Save dialog box where you can edit the name, author, and style, as well as add comments.
+* **Open External Preset**: Opens your file browser to load a preset (`.vital` format).
+* **Export Preset**: Opens your file browser to export a preset (`.vital` format).
+* **Import Bank**: Imports a bank of presets (`.vitalbank` format). There are many free banks available, for example: https://forum.vital.audio/t/february-2021-free-patch-sharing-thread/5074. ***Note that these are ZIP files***. You can rename the extension to `.zip` and extract them as you would any ZIP file. Then you can copy the files to your `Vital` folder under the appropriate subfolders.
+* **Export Bank**: Opens the Export Bank overlay menu. This will display everything that is in your `User` folder. Click the `+` icons to add presets, wavetables, LFOs, and samples to your bank. This will create a ZIP file with the extension `.vitalbank`.
+* **Initialize Preset**: Clears all settings and sets Osc 1 to a saw wave with a simple envelope and LFO.
+* **Load Tuning File**: Loads a tuning file (`.scl`, `.tun`, or `.kbd` format). This allows for different tuning systems besides standard equal temperament. If you don't see these installed on your system, you can download them from the code repository: https://github.com/mtytel/vital/tree/main/tunings. Alternatively, you can generate other types of scales at https://sevish.com/scaleworkshop/?version=2.5.7 and export them as one of the supported file types. Another good resource is https://www.huygens-fokker.org/scala/. Once there is a tuning file loaded, you can use this menu to remove it and return to equal temperament.
+* **Log out**: Signs you out of your account
+
+### Main volume and visualizer
+
+
+The main volume control and visualizer are located in the top right corner of the interface. The visualizer can be toggled to show either an oscilloscope or a spectrogram.
+
+<img
+  src="/img/vital-images/main-volume-and-visualizer.svg"
+  alt="Main volume and visualizer"
+  className="example-image"
+  loading="lazy"
+  style={{ maxWidth: '500px' }}
+/>
+
+
+<CommentSection />

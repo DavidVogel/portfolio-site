@@ -1,0 +1,485 @@
+{
+  "x-generator": "NSwag v14.3.0.0 (NJsonSchema v11.2.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Music Theory API",
+    "description": "\n*Created by David Vogel*\n\n\n*Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*\n\n\n*Base URL: [https://musictheoryapi.azurewebsites.net](https://musictheoryapi.azurewebsites.net)*\n\n# Introduction\n\nThe Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. It currently provides minimal functionality for basic music theory questions, but the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.\n\n\nTo start using the API, you must [register using an email address and password](#tag/Auth/operation/Auth_Register).\n\n\nOnce registered, you can [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.\n\n\nCurrently, the API allows you to do the following:\n\n* [Get the notes of a chord](#tag/Chords/operation/Chords_GetChord)\n\n* [Get common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)\n\n* [Get notes for a scale](#tag/Scales/operation/Scales_GetScaleNotes)\n\n* [Get diatonic chords for a scale](#tag/Scales/operation/Scales_GetScaleChords)\n",
+    "version": "v0.0.1",
+    "x-logo": {
+      "url": "/img/george-crumb-notation.jpg",
+      "altText": "Music Theory API Logo"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7032"
+    }
+  ],
+  "paths": {
+    "/api/Auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register a new user",
+        "operationId": "Auth_Register",
+        "requestBody": {
+          "x-name": "model",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login a user and return a JWT token.",
+        "operationId": "Auth_Login",
+        "requestBody": {
+          "x-name": "model",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chords/{root}/{chordType}": {
+      "get": {
+        "tags": [
+          "Chords"
+        ],
+        "summary": "Gets the notes of a chord specified by root and type.",
+        "operationId": "Chords_GetChord",
+        "parameters": [
+          {
+            "name": "root",
+            "in": "path",
+            "required": true,
+            "description": "The root note of the chord (e.g. \"D\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "chordType",
+            "in": "path",
+            "required": true,
+            "description": "The chord type (e.g. \"minor\", \"Major\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Progressions/{root}/{scaleType}/common": {
+      "get": {
+        "tags": [
+          "Progressions"
+        ],
+        "summary": "Gets common chord progressions for the specified key.",
+        "operationId": "Progressions_GetCommonProgressions",
+        "parameters": [
+          {
+            "name": "root",
+            "in": "path",
+            "required": true,
+            "description": "The root note of the key (e.g. \"E\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "scaleType",
+            "in": "path",
+            "required": true,
+            "description": "The scale type of the key (e.g. \"minor\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChordProgression"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Scales/{root}/{scaleType}/notes": {
+      "get": {
+        "tags": [
+          "Scales"
+        ],
+        "summary": "Gets the notes in a given scale.",
+        "operationId": "Scales_GetScaleNotes",
+        "parameters": [
+          {
+            "name": "root",
+            "in": "path",
+            "required": true,
+            "description": "The root note of the scale (e.g. \"C\" or \"G#\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "scaleType",
+            "in": "path",
+            "required": true,
+            "description": "The type of scale (e.g. \"major\", \"minor\", \"harmonicMinor\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Scales/{root}/{scaleType}/chords": {
+      "get": {
+        "tags": [
+          "Scales"
+        ],
+        "summary": "Gets the diatonic chords in a given scale (key).",
+        "operationId": "Scales_GetScaleChords",
+        "parameters": [
+          {
+            "name": "root",
+            "in": "path",
+            "required": true,
+            "description": "The root note of the scale/key (e.g. \"C\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "scaleType",
+            "in": "path",
+            "required": true,
+            "description": "The type of scale/key (e.g. \"major\").",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterDto": {
+        "type": "object",
+        "description": "Represents the data transfer object for user registration.",
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address of the user."
+          },
+          "password": {
+            "type": "string",
+            "description": "Gets or sets the password of the user."
+          }
+        }
+      },
+      "LoginDto": {
+        "type": "object",
+        "description": "Represents the data transfer object for user login.",
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address of the user."
+          },
+          "password": {
+            "type": "string",
+            "description": "Gets or sets the password of the user."
+          }
+        }
+      },
+      "Chord": {
+        "type": "object",
+        "description": "Represents a chord (triad) with a root note and chord type.",
+        "additionalProperties": false,
+        "properties": {
+          "root": {
+            "description": "The root note of the chord (e.g., C, D#, etc.).",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Note"
+              }
+            ]
+          },
+          "type": {
+            "description": "The type of chord (e.g., Major, Minor, Diminished, Augmented).\n            ",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ChordType"
+              }
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "description": "The notes of the chord (triad) generated from the root and type.",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            }
+          }
+        }
+      },
+      "Note": {
+        "type": "object",
+        "description": "Represents a musical note (with letter name and accidental).",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/NoteName"
+          },
+          "accidental": {
+            "$ref": "#/components/schemas/Accidental"
+          },
+          "pitchClass": {
+            "type": "integer",
+            "description": "The pitch class (0-11) of this note (ignoring octave).",
+            "format": "int32"
+          }
+        }
+      },
+      "NoteName": {
+        "type": "string",
+        "description": "Natural note names A through G.",
+        "x-enumNames": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "enum": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ]
+      },
+      "Accidental": {
+        "type": "string",
+        "description": "Accidental offsets applied to a note.",
+        "x-enumNames": [
+          "Natural",
+          "Sharp",
+          "DoubleSharp",
+          "DoubleFlat",
+          "Flat"
+        ],
+        "enum": [
+          "Natural",
+          "Sharp",
+          "DoubleSharp",
+          "DoubleFlat",
+          "Flat"
+        ]
+      },
+      "ChordType": {
+        "type": "string",
+        "description": "Types of triad chords.",
+        "x-enumNames": [
+          "Major",
+          "Minor",
+          "Diminished",
+          "Augmented"
+        ],
+        "enum": [
+          "Major",
+          "Minor",
+          "Diminished",
+          "Augmented"
+        ]
+      },
+      "ChordProgression": {
+        "type": "object",
+        "description": "Represents a chord progression (sequence of chords) in a given key.",
+        "additionalProperties": false,
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "description": "The pattern of the chord progression, e.g., \"I-IV-V\" or \"i-iv-v\"."
+          },
+          "chords": {
+            "type": "array",
+            "description": "The chords in the progression, represented as a list of Chord objects.",
+            "items": {
+              "$ref": "#/components/schemas/Chord"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "registerdto_model",
+      "x-displayName": "The User Registration Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/RegisterDto\" />"
+    },
+    {
+      "name": "logindto_model",
+      "x-displayName": "The User Login Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/LoginDto\" />"
+    },
+    {
+      "name": "chord_model",
+      "x-displayName": "The Chord Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/Chord\" />"
+    },
+    {
+      "name": "note_model",
+      "x-displayName": "The Note Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/Note\" />"
+    },
+    {
+      "name": "notename_model",
+      "x-displayName": "The Note Name Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/NoteName\" />"
+    },
+    {
+      "name": "chordtype_model",
+      "x-displayName": "The Chord Type Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/ChordType\" />"
+    },
+    {
+      "name": "chord_progression_model",
+      "x-displayName": "The Chord Progression Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/ChordProgression\" />"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Controllers",
+      "tags": [
+        "Auth",
+        "Chords",
+        "Progressions",
+        "Scales"
+      ]
+    },
+    {
+      "name": "Models",
+      "tags": [
+        "registerdto_model",
+        "logindto_model",
+        "chord_model",
+        "note_model",
+        "notename_model",
+        "chordtype_model",
+        "chord_progression_model"
+      ]
+    }
+  ]
+}
