@@ -1,13 +1,9 @@
-# .github/workflows/deploy.yml
-
 name: GitHub Pages
 
 on:
   push:
     branches:
       - main
-    paths:
-      - '.github/workflows/deploy.yml'
   pull_request:
 
 jobs:
@@ -17,9 +13,6 @@ jobs:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    defaults:
-      run:
-        working-directory: /
     steps:
       - uses: actions/checkout@v4
 
@@ -28,17 +21,18 @@ jobs:
         with:
           node-version: '21'
 
-      # - name: Get yarn cache
-      #   id: yarn-cache
-      #   run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> "${GITHUB_OUTPUT}"
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      # Added:
-      - name: Install dependencies
-        run: npm install
-      - name: Build website
-        run: npm run build
+      - run: npm ci
+      - run: npm run build
 
-      - name: Deploy To GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/main'
         with:
