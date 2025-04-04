@@ -13,8 +13,7 @@ info:
 
 
 
-    *Base URL:
-    [https://musictheoryapi.azurewebsites.net](https://musictheoryapi.azurewebsites.net)*
+    *Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*
 
 
     # Introduction
@@ -60,7 +59,8 @@ info:
     url: /img/george-crumb-notation.jpg
     altText: Music Theory API Logo
 servers:
-  - url: https://localhost:7032
+  - url: https://musictheoryapi.com
+    description: Production server
 paths:
   /api/Auth/register:
     post:
@@ -70,6 +70,7 @@ paths:
       operationId: Auth_Register
       requestBody:
         x-name: model
+        description: Registration model containing user details
         content:
           application/json:
             schema:
@@ -78,7 +79,7 @@ paths:
         x-position: 1
       responses:
         '200':
-          description: ''
+          description: ActionResult indicating success or failure
           content:
             application/octet-stream:
               schema:
@@ -88,10 +89,11 @@ paths:
     post:
       tags:
         - Auth
-      summary: Login a user and return a JWT token.
+      summary: Get a JWT token for the user
       operationId: Auth_Login
       requestBody:
         x-name: model
+        description: Login model containing user credentials
         content:
           application/json:
             schema:
@@ -100,7 +102,7 @@ paths:
         x-position: 1
       responses:
         '200':
-          description: ''
+          description: ActionResult containing the JWT token
           content:
             application/octet-stream:
               schema:
@@ -110,20 +112,20 @@ paths:
     get:
       tags:
         - Chords
-      summary: Gets the notes of a chord specified by root and type.
+      summary: Gets the notes of a chord specified by root and type
       operationId: Chords_GetChord
       parameters:
         - name: root
           in: path
           required: true
-          description: The root note of the chord (e.g. "D").
+          description: The root note of the chord (e.g. "D")
           schema:
             type: string
           x-position: 1
         - name: chordType
           in: path
           required: true
-          description: The chord type (e.g. "minor", "Major").
+          description: The chord type (e.g. "minor", "Major")
           schema:
             type: string
           x-position: 2
@@ -138,20 +140,20 @@ paths:
     get:
       tags:
         - Progressions
-      summary: Gets common chord progressions for the specified key.
+      summary: Get common chord progressions for the specified key
       operationId: Progressions_GetCommonProgressions
       parameters:
         - name: root
           in: path
           required: true
-          description: The root note of the key (e.g. "E").
+          description: The root note of the key (e.g. "E")
           schema:
             type: string
           x-position: 1
         - name: scaleType
           in: path
           required: true
-          description: The scale type of the key (e.g. "minor").
+          description: The scale type of the key (e.g. "minor")
           schema:
             type: string
           x-position: 2
@@ -168,20 +170,20 @@ paths:
     get:
       tags:
         - Scales
-      summary: Gets the notes in a given scale.
+      summary: Get notes in a given scale
       operationId: Scales_GetScaleNotes
       parameters:
         - name: root
           in: path
           required: true
-          description: The root note of the scale (e.g. "C" or "G#").
+          description: The root note of the scale (e.g. "C" or "G#")
           schema:
             type: string
           x-position: 1
         - name: scaleType
           in: path
           required: true
-          description: The type of scale (e.g. "major", "minor", "harmonicMinor").
+          description: The type of scale (e.g. "major", "minor", "harmonicMinor")
           schema:
             type: string
           x-position: 2
@@ -198,20 +200,20 @@ paths:
     get:
       tags:
         - Scales
-      summary: Gets the diatonic chords in a given scale (key).
+      summary: Get diatonic chords in a given scale
       operationId: Scales_GetScaleChords
       parameters:
         - name: root
           in: path
           required: true
-          description: The root note of the scale/key (e.g. "C").
+          description: The root note of the scale (e.g. "C")
           schema:
             type: string
           x-position: 1
         - name: scaleType
           in: path
           required: true
-          description: The type of scale/key (e.g. "major").
+          description: The type of scale (e.g. "major")
           schema:
             type: string
           x-position: 2
@@ -228,49 +230,49 @@ components:
   schemas:
     RegisterDto:
       type: object
-      description: Represents the data transfer object for user registration.
+      description: Represents the data transfer object for user registration
       additionalProperties: false
       properties:
         email:
           type: string
-          description: Gets or sets the email address of the user.
+          description: Gets or sets the email address of the user
         password:
           type: string
-          description: Gets or sets the password of the user.
+          description: Gets or sets the password of the user
     LoginDto:
       type: object
-      description: Represents the data transfer object for user login.
+      description: Represents the data transfer object for user login
       additionalProperties: false
       properties:
         email:
           type: string
-          description: Gets or sets the email address of the user.
+          description: Gets or sets the email address of the user
         password:
           type: string
-          description: Gets or sets the password of the user.
+          description: Gets or sets the password of the user
     Chord:
       type: object
-      description: Represents a chord (triad) with a root note and chord type.
+      description: Represents a chord (triad) with a root note and chord type
       additionalProperties: false
       properties:
         root:
-          description: The root note of the chord (e.g., C, D#, etc.).
+          description: The root note of the chord (e.g., C, D#, etc.)
           oneOf:
             - $ref: '#/components/schemas/Note'
         type:
           description: |-
-            The type of chord (e.g., Major, Minor, Diminished, Augmented).
+            The type of chord (e.g., Major, Minor, Diminished, Augmented)
                         
           oneOf:
             - $ref: '#/components/schemas/ChordType'
         notes:
           type: array
-          description: The notes of the chord (triad) generated from the root and type.
+          description: The notes of the chord (triad) generated from the root and type
           items:
             $ref: '#/components/schemas/Note'
     Note:
       type: object
-      description: Represents a musical note (with letter name and accidental).
+      description: Represents a musical note (with letter name and accidental)
       additionalProperties: false
       properties:
         name:
@@ -279,11 +281,11 @@ components:
           $ref: '#/components/schemas/Accidental'
         pitchClass:
           type: integer
-          description: The pitch class (0-11) of this note (ignoring octave).
+          description: The pitch class (0-11) of this note (ignoring octave)
           format: int32
     NoteName:
       type: string
-      description: Natural note names A through G.
+      description: Natural note names A through G
       x-enumNames:
         - A
         - B
@@ -302,7 +304,7 @@ components:
         - G
     Accidental:
       type: string
-      description: Accidental offsets applied to a note.
+      description: Accidental offsets applied to a note
       x-enumNames:
         - Natural
         - Sharp
@@ -317,7 +319,7 @@ components:
         - Flat
     ChordType:
       type: string
-      description: Types of triad chords.
+      description: Types of triad chords
       x-enumNames:
         - Major
         - Minor
@@ -330,7 +332,7 @@ components:
         - Augmented
     ChordProgression:
       type: object
-      description: Represents a chord progression (sequence of chords) in a given key.
+      description: Represents a chord progression in a given key
       additionalProperties: false
       properties:
         pattern:
@@ -340,7 +342,7 @@ components:
           type: array
           description: >-
             The chords in the progression, represented as a list of Chord
-            objects.
+            objects
           items:
             $ref: '#/components/schemas/Chord'
 tags:
