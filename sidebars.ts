@@ -39,6 +39,11 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: 'link',
+      label: 'Music Theory API',
+      href: '/api',
+    },
+    {
       type: 'category',
       label: `My Music`,
       collapsible: true,
