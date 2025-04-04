@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_site=self.webpackChunkportfolio_site||[]).push([[8947],{56600:e=>{e.exports=JSON.parse('{"authors":[{"name":"David Vogel","title":"Proprietor and Expositor","url":"https://davidmvogel.com","imageURL":"/img/profile-thumbnail.png","key":"dvogel","page":null,"count":2}]}')}}]);

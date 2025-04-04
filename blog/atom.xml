@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://davidmvogel.com/blog</id>
+    <title>David Vogel Blog</title>
+    <updated>2025-02-17T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://davidmvogel.com/blog"/>
+    <subtitle>David Vogel Blog</subtitle>
+    <icon>https://davidmvogel.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Creating a User Guide for the Vital Synthesizer]]></title>
+        <id>https://davidmvogel.com/blog/2025/02/17</id>
+        <link href="https://davidmvogel.com/blog/2025/02/17"/>
+        <updated>2025-02-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[For anyone interested, I wanted to share a bit about the process of creating a user guide for the Vital synthesizer.]]></summary>
+        <content type="html"><![CDATA[<p>For anyone interested, I wanted to share a bit about the process of creating a <a href="https://davidmvogel.com/docs/Vital/UserGuide/Intro">user guide</a> for the Vital synthesizer.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-did-i-embark-on-this-project">Why did I embark on this project?<a href="https://davidmvogel.com/blog/2025/02/17#why-did-i-embark-on-this-project" class="hash-link" aria-label="Direct link to Why did I embark on this project?" title="Direct link to Why did I embark on this project?">​</a></h2>
+<p>I'm a technical writer, and many of the jobs I apply for require a portfolio or examples of work. My professional output thus far has been almost entirely proprietary and not publicly accessible, so I needed to find something to document that would also be a learning opportunity, genuinely useful, and interesting enough so it wouldn't be an agonizing task on top of my day job.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-vital">Why Vital?<a href="https://davidmvogel.com/blog/2025/02/17#why-vital" class="hash-link" aria-label="Direct link to Why Vital?" title="Direct link to Why Vital?">​</a></h2>
+<p>I love music and music technology, so I was searching for something in that area when I stumbled across Vital which is luckily open source. It has no code documentation, and the user manuals available were not comprehensive. I felt I could do a much better job.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-have-i-learned">What have I learned?<a href="https://davidmvogel.com/blog/2025/02/17#what-have-i-learned" class="hash-link" aria-label="Direct link to What have I learned?" title="Direct link to What have I learned?">​</a></h2>
+<p>It's been a very long time since I've created a user manual, and this is the first time I've done so with AI tools available. ChatGPT (o1 Pro as well as the brand-spanking-new o3-mini-high with Deep Research) was handy for single code docs and general topic summaries, but it was almost useless for actually authoring the manual. The responses I received were riddled with "hallucinations" and often contained inaccurate information. Perhaps I don't yet know how to leverage AI's graphics capabilities, so it played no role in that. All graphics were painstakingly created in Adobe Illustrator.</p>
+<p>Although I'm an enthusiast, I've never authored anything about audio synthesis before and only have minimal formal training in it. It was challenging to get up to speed on how all the synth's components work. This was also the first time I couldn't collaborate with anyone involved in the product's creation, so I had to do a lot of digging to answer my questions.</p>
+<p>The image callouts are also non-standard, since they contain a lot of information, rather than just numbers referencing text sections. I felt this was the best way to present the information, as it removes the cognitive load of matching each number to a separate explanation. This is a desktop product, so I assume most users will have a large enough screen to view the callouts.</p>
+<p>The scope of the project changed multiple times during its creation. Initially, I tried to fork the repo and embed everything in-app with a help window and tooltips. However, lacking experience with JUCE and OpenGL, and only having had a little bit of C++ during college, I faced debugging issues I couldn't resolve quickly. At the same time, I was developing a reference section on general synthesis topics, building a chatbot trained on the user guide, and adding extensive tooltips throughout the manual. I had a deadline—to have it ready for job applications before my current contract ends—so narrowing the scope was essential!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-next">What's next?<a href="https://davidmvogel.com/blog/2025/02/17#whats-next" class="hash-link" aria-label="Direct link to What's next?" title="Direct link to What's next?">​</a></h2>
+<p>We'll see, but I would like to complete what I already started which is the following:</p>
+<ul>
+<li>Vital:<!-- -->
+<ul>
+<li>Code docs</li>
+<li>Video tutorials and audio examples</li>
+<li>Chatbot trained on the user manual and videos</li>
+<li>Tooltips to be added throughout the manual</li>
+</ul>
+</li>
+<li>General synthesis:<!-- -->
+<ul>
+<li>Glossary with examples</li>
+</ul>
+</li>
+</ul>
+<div style="margin-top:54px" class="commentbox"></div>]]></content>
+        <author>
+            <name>David Vogel</name>
+            <uri>https://davidmvogel.com</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hola]]></title>
+        <id>https://davidmvogel.com/blog/2025/01/25</id>
+        <link href="https://davidmvogel.com/blog/2025/01/25"/>
+        <updated>2025-01-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to my portfolio site! I look forward to sharing my thoughts and ideas around various topics such as technology and music with you all. I hope you enjoy your stay here.]]></summary>
+        <content type="html"><![CDATA[<p>Welcome to my portfolio site! I look forward to sharing my thoughts and ideas around various topics such as technology and music with you all. I hope you enjoy your stay here.</p>]]></content>
+        <author>
+            <name>David Vogel</name>
+            <uri>https://davidmvogel.com</uri>
+        </author>
+    </entry>
+</feed>
