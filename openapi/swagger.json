@@ -3,7 +3,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Music Theory API",
-    "description": "\n*Created by David Vogel*\n\n\n*Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*\n\n\n*Base URL: [https://musictheoryapi.azurewebsites.net](https://musictheoryapi.azurewebsites.net)*\n\n# Introduction\n\nThe Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. It currently provides minimal functionality for basic music theory questions, but the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.\n\n\nTo start using the API, you must [register using an email address and password](#tag/Auth/operation/Auth_Register).\n\n\nOnce registered, you can [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.\n\n\nCurrently, the API allows you to do the following:\n\n* [Get the notes of a chord](#tag/Chords/operation/Chords_GetChord)\n\n* [Get common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)\n\n* [Get notes for a scale](#tag/Scales/operation/Scales_GetScaleNotes)\n\n* [Get diatonic chords for a scale](#tag/Scales/operation/Scales_GetScaleChords)\n",
+    "description": "\n*Created by David Vogel*\n\n\n*Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*\n\n\n*Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*\n\n# Introduction\n\nThe Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. It currently provides minimal functionality for basic music theory questions, but the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.\n\n\nTo start using the API, you must [register using an email address and password](#tag/Auth/operation/Auth_Register).\n\n\nOnce registered, you can [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.\n\n\nCurrently, the API allows you to do the following:\n\n* [Get the notes of a chord](#tag/Chords/operation/Chords_GetChord)\n\n* [Get common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)\n\n* [Get notes for a scale](#tag/Scales/operation/Scales_GetScaleNotes)\n\n* [Get diatonic chords for a scale](#tag/Scales/operation/Scales_GetScaleChords)\n",
     "version": "v0.0.1",
     "x-logo": {
       "url": "/img/george-crumb-notation.jpg",
@@ -12,7 +12,8 @@
   },
   "servers": [
     {
-      "url": "https://localhost:7032"
+      "url": "https://musictheoryapi.com",
+      "description": "Production server"
     }
   ],
   "paths": {
@@ -25,6 +26,7 @@
         "operationId": "Auth_Register",
         "requestBody": {
           "x-name": "model",
+          "description": "Registration model containing user details",
           "content": {
             "application/json": {
               "schema": {
@@ -37,7 +39,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "ActionResult indicating success or failure",
             "content": {
               "application/octet-stream": {
                 "schema": {
@@ -55,10 +57,11 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Login a user and return a JWT token.",
+        "summary": "Get a JWT token for the user",
         "operationId": "Auth_Login",
         "requestBody": {
           "x-name": "model",
+          "description": "Login model containing user credentials",
           "content": {
             "application/json": {
               "schema": {
@@ -71,7 +74,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "ActionResult containing the JWT token",
             "content": {
               "application/octet-stream": {
                 "schema": {
@@ -89,14 +92,14 @@
         "tags": [
           "Chords"
         ],
-        "summary": "Gets the notes of a chord specified by root and type.",
+        "summary": "Gets the notes of a chord specified by root and type",
         "operationId": "Chords_GetChord",
         "parameters": [
           {
             "name": "root",
             "in": "path",
             "required": true,
-            "description": "The root note of the chord (e.g. \"D\").",
+            "description": "The root note of the chord (e.g. \"D\")",
             "schema": {
               "type": "string"
             },
@@ -106,7 +109,7 @@
             "name": "chordType",
             "in": "path",
             "required": true,
-            "description": "The chord type (e.g. \"minor\", \"Major\").",
+            "description": "The chord type (e.g. \"minor\", \"Major\")",
             "schema": {
               "type": "string"
             },
@@ -132,14 +135,14 @@
         "tags": [
           "Progressions"
         ],
-        "summary": "Gets common chord progressions for the specified key.",
+        "summary": "Get common chord progressions for the specified key",
         "operationId": "Progressions_GetCommonProgressions",
         "parameters": [
           {
             "name": "root",
             "in": "path",
             "required": true,
-            "description": "The root note of the key (e.g. \"E\").",
+            "description": "The root note of the key (e.g. \"E\")",
             "schema": {
               "type": "string"
             },
@@ -149,7 +152,7 @@
             "name": "scaleType",
             "in": "path",
             "required": true,
-            "description": "The scale type of the key (e.g. \"minor\").",
+            "description": "The scale type of the key (e.g. \"minor\")",
             "schema": {
               "type": "string"
             },
@@ -178,14 +181,14 @@
         "tags": [
           "Scales"
         ],
-        "summary": "Gets the notes in a given scale.",
+        "summary": "Get notes in a given scale",
         "operationId": "Scales_GetScaleNotes",
         "parameters": [
           {
             "name": "root",
             "in": "path",
             "required": true,
-            "description": "The root note of the scale (e.g. \"C\" or \"G#\").",
+            "description": "The root note of the scale (e.g. \"C\" or \"G#\")",
             "schema": {
               "type": "string"
             },
@@ -195,7 +198,7 @@
             "name": "scaleType",
             "in": "path",
             "required": true,
-            "description": "The type of scale (e.g. \"major\", \"minor\", \"harmonicMinor\").",
+            "description": "The type of scale (e.g. \"major\", \"minor\", \"harmonicMinor\")",
             "schema": {
               "type": "string"
             },
@@ -224,14 +227,14 @@
         "tags": [
           "Scales"
         ],
-        "summary": "Gets the diatonic chords in a given scale (key).",
+        "summary": "Get diatonic chords in a given scale",
         "operationId": "Scales_GetScaleChords",
         "parameters": [
           {
             "name": "root",
             "in": "path",
             "required": true,
-            "description": "The root note of the scale/key (e.g. \"C\").",
+            "description": "The root note of the scale (e.g. \"C\")",
             "schema": {
               "type": "string"
             },
@@ -241,7 +244,7 @@
             "name": "scaleType",
             "in": "path",
             "required": true,
-            "description": "The type of scale/key (e.g. \"major\").",
+            "description": "The type of scale (e.g. \"major\")",
             "schema": {
               "type": "string"
             },
@@ -270,41 +273,41 @@
     "schemas": {
       "RegisterDto": {
         "type": "object",
-        "description": "Represents the data transfer object for user registration.",
+        "description": "Represents the data transfer object for user registration",
         "additionalProperties": false,
         "properties": {
           "email": {
             "type": "string",
-            "description": "Gets or sets the email address of the user."
+            "description": "Gets or sets the email address of the user"
           },
           "password": {
             "type": "string",
-            "description": "Gets or sets the password of the user."
+            "description": "Gets or sets the password of the user"
           }
         }
       },
       "LoginDto": {
         "type": "object",
-        "description": "Represents the data transfer object for user login.",
+        "description": "Represents the data transfer object for user login",
         "additionalProperties": false,
         "properties": {
           "email": {
             "type": "string",
-            "description": "Gets or sets the email address of the user."
+            "description": "Gets or sets the email address of the user"
           },
           "password": {
             "type": "string",
-            "description": "Gets or sets the password of the user."
+            "description": "Gets or sets the password of the user"
           }
         }
       },
       "Chord": {
         "type": "object",
-        "description": "Represents a chord (triad) with a root note and chord type.",
+        "description": "Represents a chord (triad) with a root note and chord type",
         "additionalProperties": false,
         "properties": {
           "root": {
-            "description": "The root note of the chord (e.g., C, D#, etc.).",
+            "description": "The root note of the chord (e.g., C, D#, etc.)",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Note"
@@ -312,7 +315,7 @@
             ]
           },
           "type": {
-            "description": "The type of chord (e.g., Major, Minor, Diminished, Augmented).\n            ",
+            "description": "The type of chord (e.g., Major, Minor, Diminished, Augmented)\n            ",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/ChordType"
@@ -321,7 +324,7 @@
           },
           "notes": {
             "type": "array",
-            "description": "The notes of the chord (triad) generated from the root and type.",
+            "description": "The notes of the chord (triad) generated from the root and type",
             "items": {
               "$ref": "#/components/schemas/Note"
             }
@@ -330,7 +333,7 @@
       },
       "Note": {
         "type": "object",
-        "description": "Represents a musical note (with letter name and accidental).",
+        "description": "Represents a musical note (with letter name and accidental)",
         "additionalProperties": false,
         "properties": {
           "name": {
@@ -341,14 +344,14 @@
           },
           "pitchClass": {
             "type": "integer",
-            "description": "The pitch class (0-11) of this note (ignoring octave).",
+            "description": "The pitch class (0-11) of this note (ignoring octave)",
             "format": "int32"
           }
         }
       },
       "NoteName": {
         "type": "string",
-        "description": "Natural note names A through G.",
+        "description": "Natural note names A through G",
         "x-enumNames": [
           "A",
           "B",
@@ -370,7 +373,7 @@
       },
       "Accidental": {
         "type": "string",
-        "description": "Accidental offsets applied to a note.",
+        "description": "Accidental offsets applied to a note",
         "x-enumNames": [
           "Natural",
           "Sharp",
@@ -388,7 +391,7 @@
       },
       "ChordType": {
         "type": "string",
-        "description": "Types of triad chords.",
+        "description": "Types of triad chords",
         "x-enumNames": [
           "Major",
           "Minor",
@@ -404,7 +407,7 @@
       },
       "ChordProgression": {
         "type": "object",
-        "description": "Represents a chord progression (sequence of chords) in a given key.",
+        "description": "Represents a chord progression in a given key",
         "additionalProperties": false,
         "properties": {
           "pattern": {
@@ -413,7 +416,7 @@
           },
           "chords": {
             "type": "array",
-            "description": "The chords in the progression, represented as a list of Chord objects.",
+            "description": "The chords in the progression, represented as a list of Chord objects",
             "items": {
               "$ref": "#/components/schemas/Chord"
             }
