@@ -17,7 +17,7 @@
     }
   ],
   "paths": {
-    "/api/Auth/register": {
+    "/api/v0/Auth/register": {
       "post": {
         "tags": [
           "Auth"
@@ -52,7 +52,7 @@
         }
       }
     },
-    "/api/Auth/login": {
+    "/api/v0/Auth/login": {
       "post": {
         "tags": [
           "Auth"
@@ -87,19 +87,19 @@
         }
       }
     },
-    "/api/Chords/{root}/{chordType}": {
+    "/api/v0/Chords/{root}/{chordType}": {
       "get": {
         "tags": [
           "Chords"
         ],
-        "summary": "Gets the notes of a chord specified by root and type",
+        "summary": "Get the notes of a chord specified by root and type",
         "operationId": "Chords_GetChord",
         "parameters": [
           {
             "name": "root",
             "in": "path",
             "required": true,
-            "description": "The root note of the chord (e.g. \"D\")",
+            "description": "The root note of the chord (e.g. \"D\", \"C-Sharp\", \"b-flat\")",
             "schema": {
               "type": "string"
             },
@@ -130,7 +130,7 @@
         }
       }
     },
-    "/api/Progressions/{root}/{scaleType}/common": {
+    "/api/v0/Progressions/{root}/{scaleType}/common": {
       "get": {
         "tags": [
           "Progressions"
@@ -176,7 +176,7 @@
         }
       }
     },
-    "/api/Scales/{root}/{scaleType}/notes": {
+    "/api/v0/Scales/{root}/{scaleType}/notes": {
       "get": {
         "tags": [
           "Scales"
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/api/Scales/{root}/{scaleType}/chords": {
+    "/api/v0/Scales/{root}/{scaleType}/chords": {
       "get": {
         "tags": [
           "Scales"
@@ -337,10 +337,20 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/NoteName"
+            "description": "The letter name of the note (A-G)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/NoteName"
+              }
+            ]
           },
           "accidental": {
-            "$ref": "#/components/schemas/Accidental"
+            "description": "The accidental of the note (e.g., sharp, flat, natural)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Accidental"
+              }
+            ]
           },
           "pitchClass": {
             "type": "integer",
