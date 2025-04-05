@@ -62,7 +62,7 @@ servers:
   - url: https://musictheoryapi.com
     description: Production server
 paths:
-  /api/Auth/register:
+  /api/v0/Auth/register:
     post:
       tags:
         - Auth
@@ -85,7 +85,7 @@ paths:
               schema:
                 type: string
                 format: binary
-  /api/Auth/login:
+  /api/v0/Auth/login:
     post:
       tags:
         - Auth
@@ -108,17 +108,17 @@ paths:
               schema:
                 type: string
                 format: binary
-  /api/Chords/{root}/{chordType}:
+  /api/v0/Chords/{root}/{chordType}:
     get:
       tags:
         - Chords
-      summary: Gets the notes of a chord specified by root and type
+      summary: Get the notes of a chord specified by root and type
       operationId: Chords_GetChord
       parameters:
         - name: root
           in: path
           required: true
-          description: The root note of the chord (e.g. "D")
+          description: The root note of the chord (e.g. "D", "C-Sharp", "b-flat")
           schema:
             type: string
           x-position: 1
@@ -136,7 +136,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chord'
-  /api/Progressions/{root}/{scaleType}/common:
+  /api/v0/Progressions/{root}/{scaleType}/common:
     get:
       tags:
         - Progressions
@@ -166,7 +166,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ChordProgression'
-  /api/Scales/{root}/{scaleType}/notes:
+  /api/v0/Scales/{root}/{scaleType}/notes:
     get:
       tags:
         - Scales
@@ -196,7 +196,7 @@ paths:
                 type: array
                 items:
                   type: string
-  /api/Scales/{root}/{scaleType}/chords:
+  /api/v0/Scales/{root}/{scaleType}/chords:
     get:
       tags:
         - Scales
@@ -276,9 +276,13 @@ components:
       additionalProperties: false
       properties:
         name:
-          $ref: '#/components/schemas/NoteName'
+          description: The letter name of the note (A-G)
+          oneOf:
+            - $ref: '#/components/schemas/NoteName'
         accidental:
-          $ref: '#/components/schemas/Accidental'
+          description: The accidental of the note (e.g., sharp, flat, natural)
+          oneOf:
+            - $ref: '#/components/schemas/Accidental'
         pitchClass:
           type: integer
           description: The pitch class (0-11) of this note (ignoring octave)
