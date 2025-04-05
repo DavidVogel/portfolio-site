@@ -145,7 +145,7 @@ const config: Config = {
               label: 'Vital Synthesizer Code Docs',
             },
             {
-              label: 'HarmonyHub API Docs',
+              label: 'Music Theory API',
               to: '/api',
             },
           ],
