@@ -62,8 +62,8 @@
     Once registered, you can [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.
 
 
-    ",
-    "license": {
+
+",    "license": {
       "name": "Elastic License 2.0",
       "url": "https://www.elastic.co/licensing/elastic-license"
     },
@@ -99,7 +99,6 @@ curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n
           "Auth"
         ],
         "summary": "Register a new user",
-        "description": "Sample request:\n            \n    curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n    --header 'Content-Type: application/json' \\\n    --data-raw '{\n        \"Email\": \"user@example.com\",\n        \"Password\": \"MyStrongPassword123\",\n    }'",
         "operationId": "Auth_Register",
         "requestBody": {
           "x-name": "model",
@@ -133,11 +132,24 @@ curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n
     },
     "/api/v0/Auth/login": {
       "post": {
+        "x-codeSamples": [
+          {
+            "lang": "curl",
+            "source":
+"
+curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n
+--header 'Content-Type: application/json' \\\n
+--data-raw '{\n
+    \t\"Email\": \"user@example.com\",\n
+    \t\"Password\": \"StrongPassword123\"\n
+}'
+"
+  }
+],
         "tags": [
           "Auth"
         ],
         "summary": "Get a JWT token for the user",
-        "description": "Sample request:\n            \n    curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n    --header 'Content-Type: application/json' \\\n    --data-raw '{\n        \"Email\": \"user@example.com\",\n        \"Password\": \"MyStrongPassword123\",\n    }'\n            \nSuccessful response:\n            \n    {\n        \"token\": \"xyz123abc456\"\n    }",
         "operationId": "Auth_Login",
         "requestBody": {
           "x-name": "model",
@@ -154,7 +166,14 @@ curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n
         },
         "responses": {
           "200": {
-            "description": "Token generated successfully"
+            "description": "Token generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
           },
           "401": {
             "description": "Not authorized; invalid credentials",
@@ -440,6 +459,17 @@ curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n
             "type": "string",
             "description": "User's password",
             "minLength": 1
+          }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "description": "Authentication token response",
+        "additionalProperties": false,
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "JWT authentication token"
           }
         }
       },
