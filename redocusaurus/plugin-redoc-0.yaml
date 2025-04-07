@@ -92,6 +92,7 @@ info:
     Once registered, you can [obtain a JWT
     token](#tag/Auth/operation/Auth_Login) to make further requests.
 
+
   license:
     name: Elastic License 2.0
     url: https://www.elastic.co/licensing/elastic-license
@@ -110,15 +111,6 @@ paths:
       tags:
         - Auth
       summary: Register a new user
-      description: |-
-        Sample request:
-                    
-            curl --location 'https://musictheoryapi.com/api/v0/auth/register' \
-            --header 'Content-Type: application/json' \
-            --data-raw '{
-                "Email": "user@example.com",
-                "Password": "MyStrongPassword123",
-            }'
       operationId: Auth_Register
       requestBody:
         x-name: model
@@ -140,24 +132,12 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
   /api/v0/Auth/login:
     post:
+      x-codeSamples:
+        - lang: curl
+          source: " curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }' "
       tags:
         - Auth
       summary: Get a JWT token for the user
-      description: |-
-        Sample request:
-                    
-            curl --location 'https://musictheoryapi.com/api/v0/auth/login' \
-            --header 'Content-Type: application/json' \
-            --data-raw '{
-                "Email": "user@example.com",
-                "Password": "MyStrongPassword123",
-            }'
-                    
-        Successful response:
-                    
-            {
-                "token": "xyz123abc456"
-            }
       operationId: Auth_Login
       requestBody:
         x-name: model
@@ -171,6 +151,10 @@ paths:
       responses:
         '200':
           description: Token generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
         '401':
           description: Not authorized; invalid credentials
           content:
@@ -358,6 +342,14 @@ components:
           type: string
           description: User's password
           minLength: 1
+    TokenResponse:
+      type: object
+      description: Authentication token response
+      additionalProperties: false
+      properties:
+        token:
+          type: string
+          description: JWT authentication token
     LoginDto:
       type: object
       description: Represents the data transfer object for user login
