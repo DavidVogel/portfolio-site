@@ -92,7 +92,6 @@ info:
     Once registered, you can [obtain a JWT
     token](#tag/Auth/operation/Auth_Login) to make further requests.
 
-
   license:
     name: Elastic License 2.0
     url: https://www.elastic.co/licensing/elastic-license
@@ -101,13 +100,11 @@ info:
     url: /img/george-crumb-notation.jpg
     altText: Music Theory API Logo
 servers:
-  - url: https://localhost:7073
+  - url: https://musictheoryapi.com
+    description: Production server
 paths:
   /api/v0/Auth/register:
     post:
-      x-codeSamples:
-        - lang: curl
-          source: " curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }' "
       tags:
         - Auth
       summary: Register a new user
@@ -130,11 +127,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      x-code-samples:
+        - lang: curl
+          source: " curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
   /api/v0/Auth/login:
     post:
-      x-codeSamples:
-        - lang: curl
-          source: " curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }' "
       tags:
         - Auth
       summary: Get a JWT token for the user
@@ -161,6 +158,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      x-code-samples:
+        - lang: curl
+          source: " curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
   /api/v0/Chords/{root}/{chordType}:
     get:
       tags:
@@ -189,6 +189,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chord'
+              examples:
+                Example 1:
+                  value:
+                    root:
+                      name: B
+                      accidental: Natural
+                      pitchClass: 11
+                    type: Augmented
+                    notes:
+                      - name: B
+                        accidental: Natural
+                        pitchClass: 11
+                      - name: D
+                        accidental: Sharp
+                        pitchClass: 3
+                      - name: F
+                        accidental: DoubleSharp
+                        pitchClass: 7
+                Example 2:
+                  value:
+                    root:
+                      name: B
+                      accidental: Natural
+                      pitchClass: 11
+                    type: Augmented
+                    notes:
+                      - name: B
+                        accidental: Natural
+                        pitchClass: 11
+                      - name: D
+                        accidental: Sharp
+                        pitchClass: 3
+                      - name: F
+                        accidental: DoubleSharp
+                        pitchClass: 7
+                Example 3:
+                  value:
+                    root:
+                      name: B
+                      accidental: Natural
+                      pitchClass: 11
+                    type: Augmented
+                    notes:
+                      - name: B
+                        accidental: Natural
+                        pitchClass: 11
+                      - name: D
+                        accidental: Sharp
+                        pitchClass: 3
+                      - name: F
+                        accidental: DoubleSharp
+                        pitchClass: 7
         '400':
           description: Bad Request
           content:
@@ -225,6 +277,340 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ChordProgression'
+              examples:
+                Example 1:
+                  value:
+                    - pattern: C Major I-IV-V-I
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                    - pattern: C Major I-IV-V progression
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
+                Example 2:
+                  value:
+                    - pattern: C Major I-IV-V-I
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                    - pattern: C Major I-IV-V progression
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
+                Example 3:
+                  value:
+                    - pattern: C Major I-IV-V-I
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                    - pattern: C Major I-IV-V progression
+                      chords:
+                        - root:
+                            name: C
+                            accidental: Natural
+                            pitchClass: 0
+                          type: Major
+                          notes:
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                            - name: E
+                              accidental: Natural
+                              pitchClass: 4
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                        - root:
+                            name: F
+                            accidental: Natural
+                            pitchClass: 5
+                          type: Major
+                          notes:
+                            - name: F
+                              accidental: Natural
+                              pitchClass: 5
+                            - name: A
+                              accidental: Natural
+                              pitchClass: 9
+                            - name: C
+                              accidental: Natural
+                              pitchClass: 0
+                        - root:
+                            name: G
+                            accidental: Natural
+                            pitchClass: 7
+                          type: Major
+                          notes:
+                            - name: G
+                              accidental: Natural
+                              pitchClass: 7
+                            - name: B
+                              accidental: Natural
+                              pitchClass: 11
+                            - name: D
+                              accidental: Natural
+                              pitchClass: 2
         '400':
           description: Bad Request
           content:
