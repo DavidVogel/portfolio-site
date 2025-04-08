@@ -34,7 +34,7 @@
 
     * [Get notes for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleNotes)
 
-    * [Get diatonic chords for a scale (major or minor)](#tag/Scales/operation/Scales_GetScaleChords)
+    * [Get diatonic chords for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleChords)
 
 
     **Eventually, much more functionality will be added, including**:
@@ -49,21 +49,16 @@
 
     * More music theory concepts (counterpoint, voice leading, etc.)
 
-    # Documentation layout
+
+    # Documentation
+
 
     The reference documentation is generated from the [source code](https://github.com/DavidVogel/MusicTheoryApi) following the [OpenAPI 3.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) and is beautifully rendered using [redocusaurus](https://github.com/rohit-gohri/redocusaurus) (a [Redoc](https://github.com/redocly/redoc) wrapper for [Docusaurus](https://docusaurus.io/)).
 
 
-    # Getting started
+    (to be continued...)
 
-    To start using the API, you must [register using an email address and password](#tag/Auth/operation/Auth_Register).
-
-
-    Once registered, you can [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.
-
-
-    ",
-    "license": {
+",    "license": {
       "name": "Elastic License 2.0",
       "url": "https://www.elastic.co/licensing/elastic-license"
     },
@@ -102,7 +97,14 @@
         },
         "responses": {
           "201": {
-            "description": "The user was created successfully"
+            "description": "The user was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -117,7 +119,7 @@
         },
         "x-code-samples": [
           {
-            "lang": "curl",
+            "lang": "cURL",
             "source": " curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
           }
         ]
@@ -167,7 +169,7 @@
         },
         "x-code-samples": [
           {
-            "lang": "curl",
+            "lang": "cURL",
             "source": " curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
           }
         ]
@@ -210,88 +212,30 @@
                 "schema": {
                   "$ref": "#/components/schemas/Chord"
                 },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "root": {
-                        "name": "B",
-                        "accidental": "Natural",
-                        "pitchClass": 11
-                      },
-                      "type": "Augmented",
-                      "notes": [
-                        {
-                          "name": "B",
-                          "accidental": "Natural",
-                          "pitchClass": 11
-                        },
-                        {
-                          "name": "D",
-                          "accidental": "Sharp",
-                          "pitchClass": 3
-                        },
-                        {
-                          "name": "F",
-                          "accidental": "DoubleSharp",
-                          "pitchClass": 7
-                        }
-                      ]
-                    }
+                "example": {
+                  "root": {
+                    "name": "B",
+                    "accidental": "Natural",
+                    "pitchClass": 11
                   },
-                  "Example 2": {
-                    "value": {
-                      "root": {
-                        "name": "B",
-                        "accidental": "Natural",
-                        "pitchClass": 11
-                      },
-                      "type": "Augmented",
-                      "notes": [
-                        {
-                          "name": "B",
-                          "accidental": "Natural",
-                          "pitchClass": 11
-                        },
-                        {
-                          "name": "D",
-                          "accidental": "Sharp",
-                          "pitchClass": 3
-                        },
-                        {
-                          "name": "F",
-                          "accidental": "DoubleSharp",
-                          "pitchClass": 7
-                        }
-                      ]
+                  "type": "Augmented",
+                  "notes": [
+                    {
+                      "name": "B",
+                      "accidental": "Natural",
+                      "pitchClass": 11
+                    },
+                    {
+                      "name": "D",
+                      "accidental": "Sharp",
+                      "pitchClass": 3
+                    },
+                    {
+                      "name": "F",
+                      "accidental": "DoubleSharp",
+                      "pitchClass": 7
                     }
-                  },
-                  "Example 3": {
-                    "value": {
-                      "root": {
-                        "name": "B",
-                        "accidental": "Natural",
-                        "pitchClass": 11
-                      },
-                      "type": "Augmented",
-                      "notes": [
-                        {
-                          "name": "B",
-                          "accidental": "Natural",
-                          "pitchClass": 11
-                        },
-                        {
-                          "name": "D",
-                          "accidental": "Sharp",
-                          "pitchClass": 3
-                        },
-                        {
-                          "name": "F",
-                          "accidental": "DoubleSharp",
-                          "pitchClass": 7
-                        }
-                      ]
-                    }
-                  }
+                  ]
                 }
               }
             }
@@ -306,7 +250,13 @@
               }
             }
           }
-        }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "curl --location 'https://musictheoryapi.com/api/v0/chords/b/augmented' \\\n--header 'Authorization: Bearer {token}'\n"
+          }
+        ]
       }
     },
     "/api/v0/Progressions/{root}/{scaleType}/common": {
@@ -349,575 +299,273 @@
                     "$ref": "#/components/schemas/ChordProgression"
                   }
                 },
-                "examples": {
-                  "Example 1": {
-                    "value": [
+                "example": [
+                  {
+                    "pattern": "I-IV-V",
+                    "chords": [
                       {
-                        "pattern": "C Major I-IV-V-I",
-                        "chords": [
+                        "root": {
+                          "name": "C",
+                          "accidental": "Natural",
+                          "pitchClass": 0
+                        },
+                        "type": "Major",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "E",
+                            "accidental": "Natural",
+                            "pitchClass": 4
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
-                          },
-                          {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
                           }
                         ]
                       },
                       {
-                        "pattern": "C Major I-IV-V progression",
-                        "chords": [
+                        "root": {
+                          "name": "F",
+                          "accidental": "Natural",
+                          "pitchClass": 5
+                        },
+                        "type": "Major",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "F",
+                            "accidental": "Natural",
+                            "pitchClass": 5
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "A",
+                            "accidental": "Natural",
+                            "pitchClass": 9
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
+                          }
+                        ]
+                      },
+                      {
+                        "root": {
+                          "name": "G",
+                          "accidental": "Natural",
+                          "pitchClass": 7
+                        },
+                        "type": "Major",
+                        "notes": [
+                          {
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
+                          },
+                          {
+                            "name": "B",
+                            "accidental": "Natural",
+                            "pitchClass": 11
+                          },
+                          {
+                            "name": "D",
+                            "accidental": "Natural",
+                            "pitchClass": 2
                           }
                         ]
                       }
                     ]
                   },
-                  "Example 2": {
-                    "value": [
+                  {
+                    "pattern": "I-V-vi-IV",
+                    "chords": [
                       {
-                        "pattern": "C Major I-IV-V-I",
-                        "chords": [
+                        "root": {
+                          "name": "C",
+                          "accidental": "Natural",
+                          "pitchClass": 0
+                        },
+                        "type": "Major",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "E",
+                            "accidental": "Natural",
+                            "pitchClass": 4
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
-                          },
-                          {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
                           }
                         ]
                       },
                       {
-                        "pattern": "C Major I-IV-V progression",
-                        "chords": [
+                        "root": {
+                          "name": "G",
+                          "accidental": "Natural",
+                          "pitchClass": 7
+                        },
+                        "type": "Major",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "B",
+                            "accidental": "Natural",
+                            "pitchClass": 11
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
+                            "name": "D",
+                            "accidental": "Natural",
+                            "pitchClass": 2
+                          }
+                        ]
+                      },
+                      {
+                        "root": {
+                          "name": "A",
+                          "accidental": "Natural",
+                          "pitchClass": 9
+                        },
+                        "type": "Minor",
+                        "notes": [
+                          {
+                            "name": "A",
+                            "accidental": "Natural",
+                            "pitchClass": 9
+                          },
+                          {
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
+                          },
+                          {
+                            "name": "E",
+                            "accidental": "Natural",
+                            "pitchClass": 4
+                          }
+                        ]
+                      },
+                      {
+                        "root": {
+                          "name": "F",
+                          "accidental": "Natural",
+                          "pitchClass": 5
+                        },
+                        "type": "Major",
+                        "notes": [
+                          {
+                            "name": "F",
+                            "accidental": "Natural",
+                            "pitchClass": 5
+                          },
+                          {
+                            "name": "A",
+                            "accidental": "Natural",
+                            "pitchClass": 9
+                          },
+                          {
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
                           }
                         ]
                       }
                     ]
                   },
-                  "Example 3": {
-                    "value": [
+                  {
+                    "pattern": "ii-V-I",
+                    "chords": [
                       {
-                        "pattern": "C Major I-IV-V-I",
-                        "chords": [
+                        "root": {
+                          "name": "D",
+                          "accidental": "Natural",
+                          "pitchClass": 2
+                        },
+                        "type": "Minor",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "D",
+                            "accidental": "Natural",
+                            "pitchClass": 2
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "F",
+                            "accidental": "Natural",
+                            "pitchClass": 5
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
-                          },
-                          {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "A",
+                            "accidental": "Natural",
+                            "pitchClass": 9
                           }
                         ]
                       },
                       {
-                        "pattern": "C Major I-IV-V progression",
-                        "chords": [
+                        "root": {
+                          "name": "G",
+                          "accidental": "Natural",
+                          "pitchClass": 7
+                        },
+                        "type": "Major",
+                        "notes": [
                           {
-                            "root": {
-                              "name": "C",
-                              "accidental": "Natural",
-                              "pitchClass": 0
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              },
-                              {
-                                "name": "E",
-                                "accidental": "Natural",
-                                "pitchClass": 4
-                              },
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              }
-                            ]
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
                           },
                           {
-                            "root": {
-                              "name": "F",
-                              "accidental": "Natural",
-                              "pitchClass": 5
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "F",
-                                "accidental": "Natural",
-                                "pitchClass": 5
-                              },
-                              {
-                                "name": "A",
-                                "accidental": "Natural",
-                                "pitchClass": 9
-                              },
-                              {
-                                "name": "C",
-                                "accidental": "Natural",
-                                "pitchClass": 0
-                              }
-                            ]
+                            "name": "B",
+                            "accidental": "Natural",
+                            "pitchClass": 11
                           },
                           {
-                            "root": {
-                              "name": "G",
-                              "accidental": "Natural",
-                              "pitchClass": 7
-                            },
-                            "type": "Major",
-                            "notes": [
-                              {
-                                "name": "G",
-                                "accidental": "Natural",
-                                "pitchClass": 7
-                              },
-                              {
-                                "name": "B",
-                                "accidental": "Natural",
-                                "pitchClass": 11
-                              },
-                              {
-                                "name": "D",
-                                "accidental": "Natural",
-                                "pitchClass": 2
-                              }
-                            ]
+                            "name": "D",
+                            "accidental": "Natural",
+                            "pitchClass": 2
+                          }
+                        ]
+                      },
+                      {
+                        "root": {
+                          "name": "C",
+                          "accidental": "Natural",
+                          "pitchClass": 0
+                        },
+                        "type": "Major",
+                        "notes": [
+                          {
+                            "name": "C",
+                            "accidental": "Natural",
+                            "pitchClass": 0
+                          },
+                          {
+                            "name": "E",
+                            "accidental": "Natural",
+                            "pitchClass": 4
+                          },
+                          {
+                            "name": "G",
+                            "accidental": "Natural",
+                            "pitchClass": 7
                           }
                         ]
                       }
                     ]
                   }
-                }
+                ]
               }
             }
           },
@@ -931,7 +579,13 @@
               }
             }
           }
-        }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "curl --location 'https://musictheoryapi.com/api/v0/progressions/c/major/common' \\\n--header 'Authorization: Bearer {token}'\n"
+          }
+        ]
       }
     },
     "/api/v0/Scales/{root}/{scaleType}/notes": {
@@ -969,11 +623,18 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
+                  "$ref": "#/components/schemas/ScaleNotesResponse"
+                },
+                "example": [
+                  "Db",
+                  "Eb",
+                  "Fb",
+                  "Gb",
+                  "Ab",
+                  "Bbb",
+                  "C",
+                  "Db"
+                ]
               }
             }
           },
@@ -987,7 +648,13 @@
               }
             }
           }
-        }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/db/harmonicminor/notes' \\\n--header 'Authorization: Bearer {token}'\n"
+          }
+        ]
       }
     },
     "/api/v0/Scales/{root}/{scaleType}/chords": {
@@ -1029,7 +696,184 @@
                   "items": {
                     "$ref": "#/components/schemas/Chord"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "root": {
+                      "name": "C",
+                      "accidental": "Sharp",
+                      "pitchClass": 1
+                    },
+                    "type": "Minor",
+                    "notes": [
+                      {
+                        "name": "C",
+                        "accidental": "Sharp",
+                        "pitchClass": 1
+                      },
+                      {
+                        "name": "E",
+                        "accidental": "Natural",
+                        "pitchClass": 4
+                      },
+                      {
+                        "name": "G",
+                        "accidental": "Sharp",
+                        "pitchClass": 8
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "D",
+                      "accidental": "Sharp",
+                      "pitchClass": 3
+                    },
+                    "type": "Diminished",
+                    "notes": [
+                      {
+                        "name": "D",
+                        "accidental": "Sharp",
+                        "pitchClass": 3
+                      },
+                      {
+                        "name": "F",
+                        "accidental": "Sharp",
+                        "pitchClass": 6
+                      },
+                      {
+                        "name": "A",
+                        "accidental": "Natural",
+                        "pitchClass": 9
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "E",
+                      "accidental": "Natural",
+                      "pitchClass": 4
+                    },
+                    "type": "Augmented",
+                    "notes": [
+                      {
+                        "name": "E",
+                        "accidental": "Natural",
+                        "pitchClass": 4
+                      },
+                      {
+                        "name": "G",
+                        "accidental": "Sharp",
+                        "pitchClass": 8
+                      },
+                      {
+                        "name": "B",
+                        "accidental": "Sharp",
+                        "pitchClass": 0
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "F",
+                      "accidental": "Sharp",
+                      "pitchClass": 6
+                    },
+                    "type": "Minor",
+                    "notes": [
+                      {
+                        "name": "F",
+                        "accidental": "Sharp",
+                        "pitchClass": 6
+                      },
+                      {
+                        "name": "A",
+                        "accidental": "Natural",
+                        "pitchClass": 9
+                      },
+                      {
+                        "name": "C",
+                        "accidental": "Sharp",
+                        "pitchClass": 1
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "G",
+                      "accidental": "Sharp",
+                      "pitchClass": 8
+                    },
+                    "type": "Major",
+                    "notes": [
+                      {
+                        "name": "G",
+                        "accidental": "Sharp",
+                        "pitchClass": 8
+                      },
+                      {
+                        "name": "B",
+                        "accidental": "Sharp",
+                        "pitchClass": 0
+                      },
+                      {
+                        "name": "D",
+                        "accidental": "Sharp",
+                        "pitchClass": 3
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "A",
+                      "accidental": "Natural",
+                      "pitchClass": 9
+                    },
+                    "type": "Major",
+                    "notes": [
+                      {
+                        "name": "A",
+                        "accidental": "Natural",
+                        "pitchClass": 9
+                      },
+                      {
+                        "name": "C",
+                        "accidental": "Sharp",
+                        "pitchClass": 1
+                      },
+                      {
+                        "name": "E",
+                        "accidental": "Natural",
+                        "pitchClass": 4
+                      }
+                    ]
+                  },
+                  {
+                    "root": {
+                      "name": "B",
+                      "accidental": "Sharp",
+                      "pitchClass": 0
+                    },
+                    "type": "Diminished",
+                    "notes": [
+                      {
+                        "name": "B",
+                        "accidental": "Sharp",
+                        "pitchClass": 0
+                      },
+                      {
+                        "name": "D",
+                        "accidental": "Sharp",
+                        "pitchClass": 3
+                      },
+                      {
+                        "name": "F",
+                        "accidental": "Sharp",
+                        "pitchClass": 6
+                      }
+                    ]
+                  }
+                ]
               }
             }
           },
@@ -1043,12 +887,99 @@
               }
             }
           }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/c-sharp/harmonicminor/chords' \\\n--header 'Authorization: Bearer {token}'\n"
+          }
+        ]
+      }
+    },
+    "/api/v0/examples/scale": {
+      "get": {
+        "tags": [
+          "ScaleExample"
+        ],
+        "operationId": "ScaleExample_GetScaleExample",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scale"
+                },
+                "example": {
+                  "root": {
+                    "name": "D",
+                    "accidental": "Flat",
+                    "pitchClass": 1
+                  },
+                  "type": "HarmonicMinor",
+                  "notes": [
+                    {
+                      "name": "D",
+                      "accidental": "Flat",
+                      "pitchClass": 1
+                    },
+                    {
+                      "name": "E",
+                      "accidental": "Flat",
+                      "pitchClass": 3
+                    },
+                    {
+                      "name": "F",
+                      "accidental": "Flat",
+                      "pitchClass": 4
+                    },
+                    {
+                      "name": "G",
+                      "accidental": "Flat",
+                      "pitchClass": 6
+                    },
+                    {
+                      "name": "A",
+                      "accidental": "Flat",
+                      "pitchClass": 8
+                    },
+                    {
+                      "name": "B",
+                      "accidental": "DoubleFlat",
+                      "pitchClass": 9
+                    },
+                    {
+                      "name": "C",
+                      "accidental": "Natural",
+                      "pitchClass": 0
+                    },
+                    {
+                      "name": "D",
+                      "accidental": "Flat",
+                      "pitchClass": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
   },
   "components": {
     "schemas": {
+      "UserCreatedResponse": {
+        "type": "object",
+        "description": "Represents the response returned after a user is created",
+        "additionalProperties": false,
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message indicating the result of the user creation"
+          }
+        }
+      },
       "ProblemDetails": {
         "type": "object",
         "additionalProperties": {
@@ -1134,6 +1065,31 @@
       "Chord": {
         "type": "object",
         "description": "Represents a chord (triad only) with a root note and chord type",
+        "example": {
+          "Root": {
+            "Name": "B",
+            "Accidental": "Natural",
+            "PitchClass": 11
+          },
+          "Type": "Augmented",
+          "Notes": [
+            {
+              "Name": "B",
+              "Accidental": "Natural",
+              "PitchClass": 11
+            },
+            {
+              "Name": "D",
+              "Accidental": "Sharp",
+              "PitchClass": 3
+            },
+            {
+              "Name": "F",
+              "Accidental": "DoubleSharp",
+              "PitchClass": 7
+            }
+          ]
+        },
         "additionalProperties": false,
         "required": [
           "root",
@@ -1257,6 +1213,273 @@
       "ChordProgression": {
         "type": "object",
         "description": "Represents a chord progression in a given key",
+        "example": [
+          {
+            "Pattern": "I-IV-V",
+            "Chords": [
+              {
+                "Root": {
+                  "Name": "C",
+                  "Accidental": "Natural",
+                  "PitchClass": 0
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  },
+                  {
+                    "Name": "E",
+                    "Accidental": "Natural",
+                    "PitchClass": 4
+                  },
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "F",
+                  "Accidental": "Natural",
+                  "PitchClass": 5
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "F",
+                    "Accidental": "Natural",
+                    "PitchClass": 5
+                  },
+                  {
+                    "Name": "A",
+                    "Accidental": "Natural",
+                    "PitchClass": 9
+                  },
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "G",
+                  "Accidental": "Natural",
+                  "PitchClass": 7
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  },
+                  {
+                    "Name": "B",
+                    "Accidental": "Natural",
+                    "PitchClass": 11
+                  },
+                  {
+                    "Name": "D",
+                    "Accidental": "Natural",
+                    "PitchClass": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Pattern": "I-V-vi-IV",
+            "Chords": [
+              {
+                "Root": {
+                  "Name": "C",
+                  "Accidental": "Natural",
+                  "PitchClass": 0
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  },
+                  {
+                    "Name": "E",
+                    "Accidental": "Natural",
+                    "PitchClass": 4
+                  },
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "G",
+                  "Accidental": "Natural",
+                  "PitchClass": 7
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  },
+                  {
+                    "Name": "B",
+                    "Accidental": "Natural",
+                    "PitchClass": 11
+                  },
+                  {
+                    "Name": "D",
+                    "Accidental": "Natural",
+                    "PitchClass": 2
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "A",
+                  "Accidental": "Natural",
+                  "PitchClass": 9
+                },
+                "Type": "Minor",
+                "Notes": [
+                  {
+                    "Name": "A",
+                    "Accidental": "Natural",
+                    "PitchClass": 9
+                  },
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  },
+                  {
+                    "Name": "E",
+                    "Accidental": "Natural",
+                    "PitchClass": 4
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "F",
+                  "Accidental": "Natural",
+                  "PitchClass": 5
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "F",
+                    "Accidental": "Natural",
+                    "PitchClass": 5
+                  },
+                  {
+                    "Name": "A",
+                    "Accidental": "Natural",
+                    "PitchClass": 9
+                  },
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Pattern": "ii-V-I",
+            "Chords": [
+              {
+                "Root": {
+                  "Name": "D",
+                  "Accidental": "Natural",
+                  "PitchClass": 2
+                },
+                "Type": "Minor",
+                "Notes": [
+                  {
+                    "Name": "D",
+                    "Accidental": "Natural",
+                    "PitchClass": 2
+                  },
+                  {
+                    "Name": "F",
+                    "Accidental": "Natural",
+                    "PitchClass": 5
+                  },
+                  {
+                    "Name": "A",
+                    "Accidental": "Natural",
+                    "PitchClass": 9
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "G",
+                  "Accidental": "Natural",
+                  "PitchClass": 7
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  },
+                  {
+                    "Name": "B",
+                    "Accidental": "Natural",
+                    "PitchClass": 11
+                  },
+                  {
+                    "Name": "D",
+                    "Accidental": "Natural",
+                    "PitchClass": 2
+                  }
+                ]
+              },
+              {
+                "Root": {
+                  "Name": "C",
+                  "Accidental": "Natural",
+                  "PitchClass": 0
+                },
+                "Type": "Major",
+                "Notes": [
+                  {
+                    "Name": "C",
+                    "Accidental": "Natural",
+                    "PitchClass": 0
+                  },
+                  {
+                    "Name": "E",
+                    "Accidental": "Natural",
+                    "PitchClass": 4
+                  },
+                  {
+                    "Name": "G",
+                    "Accidental": "Natural",
+                    "PitchClass": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ],
         "additionalProperties": false,
         "required": [
           "pattern",
@@ -1276,6 +1499,130 @@
             }
           }
         }
+      },
+      "ScaleNotesResponse": {
+        "type": "object",
+        "description": "Wrapper for scale notes response.",
+        "example": {
+          "Notes": [
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "A",
+            "B"
+          ]
+        },
+        "additionalProperties": false,
+        "properties": {
+          "notes": {
+            "type": "array",
+            "description": "The list of note strings in the scale.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Scale": {
+        "type": "object",
+        "description": "Represents a musical scale with a root note and a scale type",
+        "example": {
+          "Root": {
+            "Name": "D",
+            "Accidental": "Flat",
+            "PitchClass": 1
+          },
+          "Type": "HarmonicMinor",
+          "Notes": [
+            {
+              "Name": "D",
+              "Accidental": "Flat",
+              "PitchClass": 1
+            },
+            {
+              "Name": "E",
+              "Accidental": "Flat",
+              "PitchClass": 3
+            },
+            {
+              "Name": "F",
+              "Accidental": "Flat",
+              "PitchClass": 4
+            },
+            {
+              "Name": "G",
+              "Accidental": "Flat",
+              "PitchClass": 6
+            },
+            {
+              "Name": "A",
+              "Accidental": "Flat",
+              "PitchClass": 8
+            },
+            {
+              "Name": "B",
+              "Accidental": "DoubleFlat",
+              "PitchClass": 9
+            },
+            {
+              "Name": "C",
+              "Accidental": "Natural",
+              "PitchClass": 0
+            },
+            {
+              "Name": "D",
+              "Accidental": "Flat",
+              "PitchClass": 1
+            }
+          ]
+        },
+        "additionalProperties": false,
+        "required": [
+          "root",
+          "type",
+          "notes"
+        ],
+        "properties": {
+          "root": {
+            "description": "The root note of the scale (e.g., \"C\", \"D-Sharp\", \"G-Flat\", etc.)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Note"
+              }
+            ]
+          },
+          "type": {
+            "description": "The type of scale (\"Major\", \"Minor\", or \"HarmonicMinor\")",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ScaleType"
+              }
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "description": "The notes of the scale generated from the root and type",
+            "items": {
+              "$ref": "#/components/schemas/Note"
+            }
+          }
+        }
+      },
+      "ScaleType": {
+        "type": "string",
+        "description": "Types of musical scales",
+        "x-enumNames": [
+          "Major",
+          "Minor",
+          "HarmonicMinor"
+        ],
+        "enum": [
+          "Major",
+          "Minor",
+          "HarmonicMinor"
+        ]
       }
     }
   },
@@ -1314,6 +1661,16 @@
       "name": "chord_progression_model",
       "x-displayName": "The Chord Progression Model",
       "description": "<SchemaDefinition schemaRef=\"#/components/schemas/ChordProgression\" />"
+    },
+    {
+      "name": "scale_model",
+      "x-displayName": "The Scale Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/Scale\" />"
+    },
+    {
+      "name": "scaletype_model",
+      "x-displayName": "The Scale Type Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/ScaleType\" />"
     }
   ],
   "x-tagGroups": [
@@ -1332,10 +1689,12 @@
         "registerdto_model",
         "logindto_model",
         "chord_model",
-        "note_model",
-        "notename_model",
         "chordtype_model",
-        "chord_progression_model"
+        "chord_progression_model",
+        "scale_model",
+        "scaletype_model",
+        "note_model",
+        "notename_model"
       ]
     }
   ]
