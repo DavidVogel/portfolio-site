@@ -2,18 +2,8 @@ x-generator: NSwag v14.3.0.0 (NJsonSchema v11.2.0.0 (Newtonsoft.Json v13.0.0.0))
 openapi: 3.0.0
 info:
   title: Music Theory API
-  description: >
-
-    <div class='theme-admonition theme-admonition-info admonition_xJq3 alert
-    alert--info'><div class='admonitionHeading_Gvgb'><span
-    class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path
-    fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71
-    5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7
-    7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0
-    6H6v2h2v-2z'></path></svg></span>info</div><div
-    class='admonitionContent_BuS1'><p>This section is under construction. Please
-    check back later.</p></div></div>
-
+  description: >2-
+     <div class='theme-admonition theme-admonition-info admonition_xJq3 alert alert--info'><div class='admonitionHeading_Gvgb'><span class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z'></path></svg></span>info</div><div class='admonitionContent_BuS1'><p>This section is under construction. Please check back later.</p></div></div>
 
     *Created by David Vogel*
 
@@ -445,14 +435,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ScaleNotesResponse'
               example:
-                - Db
-                - Eb
-                - Fb
-                - Gb
-                - Ab
-                - Bbb
-                - C
-                - Db
+                - G#
+                - A#
+                - B
+                - C#
+                - D#
+                - E
+                - F##
+                - G#
         '400':
           description: Bad Request
           content:
@@ -463,7 +453,8 @@ paths:
         - lang: cURL
           source: >
             curl --location
-            'https://musictheoryapi.com/api/v0/scales/db/harmonicminor/notes' \
+            'https://musictheoryapi.com/api/v0/scales/G-Sharp/harmonicminor/notes'
+            \
 
             --header 'Authorization: Bearer {token}'
   /api/v0/Scales/{root}/{scaleType}/chords:
@@ -630,35 +621,35 @@ paths:
                 $ref: '#/components/schemas/Scale'
               example:
                 root:
-                  name: D
-                  accidental: Flat
-                  pitchClass: 1
+                  name: G
+                  accidental: Sharp
+                  pitchClass: 8
                 type: HarmonicMinor
                 notes:
-                  - name: D
-                    accidental: Flat
-                    pitchClass: 1
-                  - name: E
-                    accidental: Flat
-                    pitchClass: 3
-                  - name: F
-                    accidental: Flat
-                    pitchClass: 4
                   - name: G
-                    accidental: Flat
-                    pitchClass: 6
-                  - name: A
-                    accidental: Flat
+                    accidental: Sharp
                     pitchClass: 8
+                  - name: A
+                    accidental: Sharp
+                    pitchClass: 10
                   - name: B
-                    accidental: DoubleFlat
-                    pitchClass: 9
-                  - name: C
                     accidental: Natural
-                    pitchClass: 0
-                  - name: D
-                    accidental: Flat
+                    pitchClass: 11
+                  - name: C
+                    accidental: Sharp
                     pitchClass: 1
+                  - name: D
+                    accidental: Sharp
+                    pitchClass: 3
+                  - name: E
+                    accidental: Natural
+                    pitchClass: 4
+                  - name: F
+                    accidental: DoubleSharp
+                    pitchClass: 7
+                  - name: G
+                    accidental: Sharp
+                    pitchClass: 8
 components:
   schemas:
     UserCreatedResponse:
@@ -1039,35 +1030,35 @@ components:
       description: Represents a musical scale with a root note and a scale type
       example:
         Root:
-          Name: D
-          Accidental: Flat
-          PitchClass: 1
+          Name: G
+          Accidental: Sharp
+          PitchClass: 8
         Type: HarmonicMinor
         Notes:
-          - Name: D
-            Accidental: Flat
-            PitchClass: 1
-          - Name: E
-            Accidental: Flat
-            PitchClass: 3
-          - Name: F
-            Accidental: Flat
-            PitchClass: 4
           - Name: G
-            Accidental: Flat
-            PitchClass: 6
-          - Name: A
-            Accidental: Flat
+            Accidental: Sharp
             PitchClass: 8
+          - Name: A
+            Accidental: Sharp
+            PitchClass: 10
           - Name: B
-            Accidental: DoubleFlat
-            PitchClass: 9
-          - Name: C
             Accidental: Natural
-            PitchClass: 0
-          - Name: D
-            Accidental: Flat
+            PitchClass: 11
+          - Name: C
+            Accidental: Sharp
             PitchClass: 1
+          - Name: D
+            Accidental: Sharp
+            PitchClass: 3
+          - Name: E
+            Accidental: Natural
+            PitchClass: 4
+          - Name: F
+            Accidental: DoubleSharp
+            PitchClass: 7
+          - Name: G
+            Accidental: Sharp
+            PitchClass: 8
       additionalProperties: false
       required:
         - root
