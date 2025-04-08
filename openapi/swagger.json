@@ -4,61 +4,59 @@
   "info": {
     "title": "Music Theory API",
     "description": "
-
-    <div class='theme-admonition theme-admonition-info admonition_xJq3 alert alert--info'><div class='admonitionHeading_Gvgb'><span class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z'></path></svg></span>info</div><div class='admonitionContent_BuS1'><p>This section is under construction. Please check back later.</p></div></div>
-
-
-    *Created by David Vogel*
+<div class='theme-admonition theme-admonition-info admonition_xJq3 alert alert--info'><div class='admonitionHeading_Gvgb'><span class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z'></path></svg></span>info</div><div class='admonitionContent_BuS1'><p>This section is under construction. Please check back later.</p></div></div>
 
 
-    *Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*
+*Created by David Vogel*
 
 
-    *Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*
+*Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*
 
 
-    # Introduction
-
-    The Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. However, in the coming months and years, I hope to turn it into something truly useful that can provide answers to a vast array of music theory questions, and will be able to generate working examples in standard formats such as MusicXML and MIDI.
+*Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*
 
 
-    The API currently provides minimal functionality for a few basic music theory questions, but since this is primarily a demonstration of technical writing at the moment, the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.
+# Introduction
+
+The Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. However, in the coming months and years, I hope to turn it into something truly useful that can provide answers to a vast array of music theory questions, and will be able to generate working examples in standard formats such as MusicXML and MIDI.
 
 
-    **Currently, the API allows you to do the following**:
+The API currently provides minimal functionality for a few basic music theory questions, but since this is primarily a demonstration of technical writing at the moment, the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.
 
 
-    * [Get the notes of a root-position chord (major, minor, augmented, or diminished)](#tag/Chords/operation/Chords_GetChord)
-
-    * [Get a few common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)
-
-    * [Get notes for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleNotes)
-
-    * [Get diatonic chords for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleChords)
+**Currently, the API allows you to do the following**:
 
 
-    **Eventually, much more functionality will be added, including**:
+* [Get the notes of a root-position chord (major, minor, augmented, or diminished)](#tag/Chords/operation/Chords_GetChord)
 
-    * Output in MusicXML and MIDI formats
+* [Get a few common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)
 
-    * More chord types (inversions, suspensions, 7th, 9th, 11th, 13th, etc.)
+* [Get notes for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleNotes)
 
-    * More scales (whole tone, pentatonic, hexatonic, octatonic, modes, etc.)
-
-    * More progressions (circle of fifths, secondary dominants, etc.)
-
-    * More music theory concepts (counterpoint, voice leading, etc.)
+* [Get diatonic chords for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleChords)
 
 
-    # Documentation
+**Eventually, much more functionality will be added, including**:
+
+* Output in MusicXML and MIDI formats
+
+* More chord types (inversions, suspensions, 7th, 9th, 11th, 13th, etc.)
+
+* More scales (whole tone, pentatonic, hexatonic, octatonic, modes, etc.)
+
+* More progressions (circle of fifths, secondary dominants, etc.)
+
+* More music theory concepts (counterpoint, voice leading, etc.)
 
 
-    The reference documentation is generated from the [source code](https://github.com/DavidVogel/MusicTheoryApi) following the [OpenAPI 3.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) and is beautifully rendered using [redocusaurus](https://github.com/rohit-gohri/redocusaurus) (a [Redoc](https://github.com/redocly/redoc) wrapper for [Docusaurus](https://docusaurus.io/)).
+# Documentation
 
 
-    (to be continued...)
+The reference documentation is generated from the [source code](https://github.com/DavidVogel/MusicTheoryApi) following the [OpenAPI 3.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) and is beautifully rendered using [redocusaurus](https://github.com/rohit-gohri/redocusaurus) (a [Redoc](https://github.com/redocly/redoc) wrapper for [Docusaurus](https://docusaurus.io/)).
 
-",    "license": {
+
+(to be continued...)",
+    "license": {
       "name": "Elastic License 2.0",
       "url": "https://www.elastic.co/licensing/elastic-license"
     },
@@ -626,14 +624,14 @@
                   "$ref": "#/components/schemas/ScaleNotesResponse"
                 },
                 "example": [
-                  "Db",
-                  "Eb",
-                  "Fb",
-                  "Gb",
-                  "Ab",
-                  "Bbb",
-                  "C",
-                  "Db"
+                  "G#",
+                  "A#",
+                  "B",
+                  "C#",
+                  "D#",
+                  "E",
+                  "F##",
+                  "G#"
                 ]
               }
             }
@@ -652,7 +650,7 @@
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/db/harmonicminor/notes' \\\n--header 'Authorization: Bearer {token}'\n"
+            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/G-Sharp/harmonicminor/notes' \\\n--header 'Authorization: Bearer {token}'\n"
           }
         ]
       }
@@ -912,51 +910,51 @@
                 },
                 "example": {
                   "root": {
-                    "name": "D",
-                    "accidental": "Flat",
-                    "pitchClass": 1
+                    "name": "G",
+                    "accidental": "Sharp",
+                    "pitchClass": 8
                   },
                   "type": "HarmonicMinor",
                   "notes": [
                     {
-                      "name": "D",
-                      "accidental": "Flat",
-                      "pitchClass": 1
-                    },
-                    {
-                      "name": "E",
-                      "accidental": "Flat",
-                      "pitchClass": 3
-                    },
-                    {
-                      "name": "F",
-                      "accidental": "Flat",
-                      "pitchClass": 4
-                    },
-                    {
                       "name": "G",
-                      "accidental": "Flat",
-                      "pitchClass": 6
-                    },
-                    {
-                      "name": "A",
-                      "accidental": "Flat",
+                      "accidental": "Sharp",
                       "pitchClass": 8
                     },
                     {
+                      "name": "A",
+                      "accidental": "Sharp",
+                      "pitchClass": 10
+                    },
+                    {
                       "name": "B",
-                      "accidental": "DoubleFlat",
-                      "pitchClass": 9
+                      "accidental": "Natural",
+                      "pitchClass": 11
                     },
                     {
                       "name": "C",
-                      "accidental": "Natural",
-                      "pitchClass": 0
+                      "accidental": "Sharp",
+                      "pitchClass": 1
                     },
                     {
                       "name": "D",
-                      "accidental": "Flat",
-                      "pitchClass": 1
+                      "accidental": "Sharp",
+                      "pitchClass": 3
+                    },
+                    {
+                      "name": "E",
+                      "accidental": "Natural",
+                      "pitchClass": 4
+                    },
+                    {
+                      "name": "F",
+                      "accidental": "DoubleSharp",
+                      "pitchClass": 7
+                    },
+                    {
+                      "name": "G",
+                      "accidental": "Sharp",
+                      "pitchClass": 8
                     }
                   ]
                 }
@@ -1530,51 +1528,51 @@
         "description": "Represents a musical scale with a root note and a scale type",
         "example": {
           "Root": {
-            "Name": "D",
-            "Accidental": "Flat",
-            "PitchClass": 1
+            "Name": "G",
+            "Accidental": "Sharp",
+            "PitchClass": 8
           },
           "Type": "HarmonicMinor",
           "Notes": [
             {
-              "Name": "D",
-              "Accidental": "Flat",
-              "PitchClass": 1
-            },
-            {
-              "Name": "E",
-              "Accidental": "Flat",
-              "PitchClass": 3
-            },
-            {
-              "Name": "F",
-              "Accidental": "Flat",
-              "PitchClass": 4
-            },
-            {
               "Name": "G",
-              "Accidental": "Flat",
-              "PitchClass": 6
-            },
-            {
-              "Name": "A",
-              "Accidental": "Flat",
+              "Accidental": "Sharp",
               "PitchClass": 8
             },
             {
+              "Name": "A",
+              "Accidental": "Sharp",
+              "PitchClass": 10
+            },
+            {
               "Name": "B",
-              "Accidental": "DoubleFlat",
-              "PitchClass": 9
+              "Accidental": "Natural",
+              "PitchClass": 11
             },
             {
               "Name": "C",
-              "Accidental": "Natural",
-              "PitchClass": 0
+              "Accidental": "Sharp",
+              "PitchClass": 1
             },
             {
               "Name": "D",
-              "Accidental": "Flat",
-              "PitchClass": 1
+              "Accidental": "Sharp",
+              "PitchClass": 3
+            },
+            {
+              "Name": "E",
+              "Accidental": "Natural",
+              "PitchClass": 4
+            },
+            {
+              "Name": "F",
+              "Accidental": "DoubleSharp",
+              "PitchClass": 7
+            },
+            {
+              "Name": "G",
+              "Accidental": "Sharp",
+              "PitchClass": 8
             }
           ]
         },
