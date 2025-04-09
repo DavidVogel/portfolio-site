@@ -4,58 +4,145 @@
   "info": {
     "title": "Music Theory API",
     "description": "
-<div class='theme-admonition theme-admonition-info admonition_xJq3 alert alert--info'><div class='admonitionHeading_Gvgb'><span class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z'></path></svg></span>info</div><div class='admonitionContent_BuS1'><p>This section is under construction. Please check back later.</p></div></div>
 
 
-*Created by David Vogel*
+    <div class='theme-admonition theme-admonition-info admonition_xJq3 alert alert--info'><div class='admonitionHeading_Gvgb'><span class='admonitionIcon_Rf37'><svg viewBox='0 0 14 16'><path fill-rule='evenodd' d='M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z'></path></svg></span>info</div><div class='admonitionContent_BuS1'><p>This section is under construction. Please check back later.</p></div></div>
 
 
-*Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*
+    *Created by David Vogel*
 
 
-*Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*
+    *Repo: [https://github.com/DavidVogel/MusicTheoryApi](https://github.com/DavidVogel/MusicTheoryApi)*
 
 
-# Introduction
-
-The Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. However, in the coming months and years, I hope to turn it into something truly useful that can provide answers to a vast array of music theory questions, and will be able to generate working examples in standard formats such as MusicXML and MIDI.
+    *Base URL: [https://musictheoryapi.com](https://musictheoryapi.com)*
 
 
-The API currently provides minimal functionality for a few basic music theory questions, but since this is primarily a demonstration of technical writing at the moment, the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.
+    # Introduction
+
+    The Music Theory API is currently a toy project for me to both practice my developer skills and demonstrate technical writing knowledge around APIs, SaaS, DevOps, and InfoSec. However, in the coming months and years, I hope to turn it into something truly useful that can provide answers to a vast array of music theory questions, and will be able to generate working examples in standard formats such as MusicXML and MIDI.
 
 
-**Currently, the API allows you to do the following**:
+    The API currently provides minimal functionality for a few basic music theory questions, but since this is primarily a demonstration of technical writing at the moment, the documentation covers everything necessary for a development team to work on and support the API as well as how a client would consume it.
 
 
-* [Get the notes of a root-position chord (major, minor, augmented, or diminished)](#tag/Chords/operation/Chords_GetChord)
-
-* [Get a few common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)
-
-* [Get notes for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleNotes)
-
-* [Get diatonic chords for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleChords)
+    **Currently, the API allows you to do the following**:
 
 
-**Eventually, much more functionality will be added, including**:
+    * [Get the notes of a root-position chord (major, minor, augmented, or diminished)](#tag/Chords/operation/Chords_GetChord)
 
-* Output in MusicXML and MIDI formats
+    * [Get a few common chord progressions for a key (both Roman numerals and note spellings / pitch classes)](#tag/Progressions/operation/Progressions_GetCommonProgressions)
 
-* More chord types (inversions, suspensions, 7th, 9th, 11th, 13th, etc.)
+    * [Get notes for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleNotes)
 
-* More scales (whole tone, pentatonic, hexatonic, octatonic, modes, etc.)
-
-* More progressions (circle of fifths, secondary dominants, etc.)
-
-* More music theory concepts (counterpoint, voice leading, etc.)
+    * [Get diatonic chords for a scale (major, minor, or harmonic minor)](#tag/Scales/operation/Scales_GetScaleChords)
 
 
-# Documentation
+    **Eventually, much more functionality will be added, including**:
+
+    * Output in MusicXML and MIDI formats
+
+    * More chord types (inversions, suspensions, 7th, 9th, 11th, 13th, etc.)
+
+    * More scales (whole tone, pentatonic, hexatonic, octatonic, modes, etc.)
+
+    * More progressions (circle of fifths, secondary dominants, etc.)
+
+    * More music theory concepts (counterpoint, voice leading, etc.)
 
 
-The reference documentation is generated from the [source code](https://github.com/DavidVogel/MusicTheoryApi) following the [OpenAPI 3.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) and is beautifully rendered using [redocusaurus](https://github.com/rohit-gohri/redocusaurus) (a [Redoc](https://github.com/redocly/redoc) wrapper for [Docusaurus](https://docusaurus.io/)).
+    # Documentation
 
 
-(to be continued...)",
+    The reference documentation is generated from the [source code](https://github.com/DavidVogel/MusicTheoryApi) following the [OpenAPI 3.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) and is beautifully rendered using [redocusaurus](https://github.com/rohit-gohri/redocusaurus) (a [Redoc](https://github.com/redocly/redoc) wrapper for [Docusaurus](https://docusaurus.io/)).
+
+
+    In addition to the reference documentation, this page contains a [Quick Start](#section/Quick-Start) section to help you get started quickly.
+
+
+    The following sections are also available:
+
+
+    * Authentication
+
+    * SDK
+
+
+    # Quick Start
+
+
+    We will run through the process of creating a user, obtaining a JWT token, and making calls to the API.
+
+
+    ## Registration and authentication
+
+
+    To start using the API, you must [register using an email address and password](#tag/Auth/operation/Auth_Register).
+
+
+    Run the following command, using your own email and password, to register a new user:
+
+
+    ```bash
+
+    curl 'https://musictheoryapi.com/api/v0/auth/register' \\\n
+    \t--header 'Content-Type: application/json' \\\n
+    \t--data-raw '{\n
+    \t\t\"Email\": \"user@example.com\",\n
+    \t\t\"Password\": \"StrongPassword123\"\n
+    \t}'\n
+
+    ```
+
+
+    If all is well, you will receive a `201 Created` response with a message saying that the user was created successfully.
+
+
+    If you get a 500 error, try again a few times. Azure can be unreliable at times.
+
+
+    Once registered, you need to [obtain a JWT token](#tag/Auth/operation/Auth_Login) to make further requests.
+
+
+    Run the following command, using your own email and password, to obtain a JWT token:
+
+
+    ```bash
+
+    curl 'https://musictheoryapi.com/api/v0/auth/login' \\\n
+    \t--header 'Content-Type: application/json' \\\n
+    \t--data-raw '{\n
+    \t\t\"Email\": \"user@example.com\",\n
+    \t\t\"Password\": \"StrongPassword123\"\n
+    \t}'\n
+
+    ```
+
+
+    If successful, you will receive a `200 OK` response with a JWT token in the `token` field. This token is valid for one hour and must be included in the `Authorization` header of all subsequent requests.
+
+
+    ## Making requests
+
+
+    ### Getting the notes of a chord
+
+
+    First, we will get the notes of a B augmented triad. The notes for this are B, D♯, and F𝄪. To get past the burden of special characters and ambiguous URLs, we spell these things out when using the API, but in some instances (e.g., scales) it is also capable of returning a stringified response (in the case of scales) such as `\"B, D#, F##\"`.
+
+
+    To [get the notes of a chord](#tag/Chords/operation/Chords_GetChord) (B augmented triad in this case), run the following command using your own token:
+
+
+    ```bash
+
+    curl 'https://musictheoryapi.com/api/v0/chords/b/augmented' \\\n
+    \t--header 'Authorization: Bearer {token}'\n
+
+    ```
+
+    (to be continued...)
+",
     "license": {
       "name": "Elastic License 2.0",
       "url": "https://www.elastic.co/licensing/elastic-license"
@@ -118,7 +205,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": " curl --location 'https://musictheoryapi.com/api/v0/auth/register' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/auth/register' \\\n  --header 'Content-Type: application/json' \\\n  --data-raw '{\n    \"Email\": \"user@example.com\",\n    \"Password\": \"StrongPassword123\"\n  }'\n"
           }
         ]
       }
@@ -168,7 +255,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": " curl --location 'https://musictheoryapi.com/api/v0/auth/login' \\\n --header 'Content-Type: application/json' \\\n --data-raw '{\n \t\"Email\": \"user@example.com\",\n \t\"Password\": \"StrongPassword123\"\n }'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/auth/login' \\\n  --header 'Content-Type: application/json' \\\n  --data-raw '{\n    \"Email\": \"user@example.com\",\n    \"Password\": \"StrongPassword123\"\n  }'\n"
           }
         ]
       }
@@ -252,7 +339,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": "curl --location 'https://musictheoryapi.com/api/v0/chords/b/augmented' \\\n--header 'Authorization: Bearer {token}'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/chords/b/augmented' \\\n  --header 'Authorization: Bearer {token}'\n"
           }
         ]
       }
@@ -581,7 +668,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": "curl --location 'https://musictheoryapi.com/api/v0/progressions/c/major/common' \\\n--header 'Authorization: Bearer {token}'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/progressions/c/major/common' \\\n  --header 'Authorization: Bearer {token}'\n"
           }
         ]
       }
@@ -650,7 +737,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/G-Sharp/harmonicminor/notes' \\\n--header 'Authorization: Bearer {token}'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/scales/G-Sharp/harmonicminor/notes' \\\n  --header 'Authorization: Bearer {token}'\n"
           }
         ]
       }
@@ -889,7 +976,7 @@ The reference documentation is generated from the [source code](https://github.c
         "x-code-samples": [
           {
             "lang": "cURL",
-            "source": "curl --location 'https://musictheoryapi.com/api/v0/scales/c-sharp/harmonicminor/chords' \\\n--header 'Authorization: Bearer {token}'\n"
+            "source": "curl 'https://musictheoryapi.com/api/v0/scales/c-sharp/harmonicminor/chords' \\\n  --header 'Authorization: Bearer {token}'\n"
           }
         ]
       }
