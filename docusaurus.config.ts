@@ -144,10 +144,6 @@ const config: Config = {
               to: '/docs/Vital/Vital-Code-Docs',
               label: 'Vital Synthesizer Code Docs',
             },
-            {
-              label: 'Music Theory API',
-              to: '/api',
-            },
           ],
         },
         {
